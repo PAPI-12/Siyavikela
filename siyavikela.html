@@ -1,0 +1,857 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b0d11">
+  <meta name="description" content="Siyavikela Security Services — brand development, strategic positioning and corporate identity concept for Dobsonville, Soweto.">
+  <title>Siyavikela — Protection That Connects</title>
+  <style>
+    :root{
+      --ink:#0a0c10;--ink2:#11151b;--panel:#181d25;--panel2:#202630;--paper:#f3f3f0;--white:#fff;--silver:#c4c9d1;--muted:#9ba2ad;--line:rgba(236,239,244,.14);--red:#b51f35;--red2:#d33048;--text:#eceef1;--serif:Georgia,"Times New Roman",serif;--sans:Inter,Arial,Helvetica,sans-serif;--max:1240px;--navh:76px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:90px}
+    body{margin:0;background:var(--ink);color:var(--text);font-family:var(--sans);font-size:15px;line-height:1.65;letter-spacing:.005em;-webkit-font-smoothing:antialiased}
+    img{max-width:100%;display:block}
+    a{color:inherit;text-decoration:none}
+    button{font:inherit}
+    ::selection{background:var(--red);color:white}
+    .wrap{width:min(var(--max),calc(100% - 52px));margin:0 auto}
+    .eyebrow{font-size:10px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:12px}
+    .eyebrow::before{content:"";width:23px;height:1px;background:var(--red);display:inline-block}
+    .eyebrow.red{color:var(--red)}
+    .section-heading{font-size:clamp(38px,5vw,72px);line-height:.98;letter-spacing:-.055em;font-weight:600;margin:22px 0 26px;max-width:900px}
+    .section-heading em,.hero h1 em{font-family:var(--serif);font-weight:400;letter-spacing:-.045em}
+    .lede{font-size:clamp(16px,1.35vw,20px);line-height:1.55;color:#c1c6cd;max-width:690px}
+    .small{font-size:12px;color:var(--muted);line-height:1.6}
+    .fineprint{font-size:11px;line-height:1.6;color:#9299a4}
+    .redline{height:2px;width:50px;background:var(--red);margin:26px 0}
+    .button{display:inline-flex;align-items:center;justify-content:center;gap:12px;padding:14px 18px;border:1px solid rgba(255,255,255,.35);font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;transition:.25s ease;background:transparent;color:#fff}
+    .button:hover{background:var(--white);border-color:var(--white);color:var(--ink);transform:translateY(-2px)}
+    .button.red{background:var(--red);border-color:var(--red);color:#fff}
+    .button.red:hover{background:#d02a43;border-color:#d02a43;color:#fff}
+    .button .arrow{font-size:17px;line-height:0}
+    .top-progress{position:fixed;z-index:1200;top:0;left:0;height:2px;width:100%;pointer-events:none;background:transparent}
+    .top-progress span{display:block;height:100%;width:0;background:var(--red);box-shadow:0 0 14px rgba(181,31,53,.8)}
+    .site-header{height:var(--navh);position:fixed;z-index:1100;left:0;right:0;top:0;padding:0 34px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.08);background:rgba(8,10,14,.48);backdrop-filter:blur(12px);transition:background .25s,border-color .25s}
+    .site-header.scrolled{background:rgba(8,10,14,.92);border-color:rgba(255,255,255,.1)}
+    .brand-lockup{display:flex;align-items:center;gap:11px;min-width:220px}
+    .brand-lockup img{width:38px;height:42px;object-fit:contain}
+    .brand-lockup b{display:block;font-size:12px;line-height:1.1;letter-spacing:.14em;font-weight:800}
+    .brand-lockup small{display:block;font-size:8px;letter-spacing:.23em;color:#aeb4bf;margin-top:4px}
+    .site-nav{display:flex;align-items:center;gap:28px;margin-left:auto;margin-right:30px}
+    .site-nav a{font-size:9px;text-transform:uppercase;letter-spacing:.16em;color:#d0d4db;transition:color .2s;white-space:nowrap}
+    .site-nav a:hover{color:#fff}
+    .header-actions{display:flex;align-items:center;gap:16px}
+    .nav-download{font-size:9px;text-transform:uppercase;font-weight:700;letter-spacing:.15em;background:var(--red);padding:12px 14px;color:#fff;white-space:nowrap;transition:.2s}
+    .nav-download:hover{background:#d02a43}
+    .menu-toggle{display:none;background:transparent;border:1px solid rgba(255,255,255,.35);color:#fff;width:40px;height:40px;cursor:pointer;font-size:18px}
+    .hero{height:min(900px,100svh);min-height:660px;position:relative;overflow:hidden;display:flex;align-items:flex-end;background:#11151b}
+    .hero-image{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 48%;filter:saturate(.8)}
+    .hero::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,8,12,.93) 0%,rgba(5,8,12,.68) 44%,rgba(5,8,12,.1) 100%),linear-gradient(0deg,rgba(5,8,12,.8),transparent 38%);z-index:1}
+    .hero::after{content:"";position:absolute;inset:0;opacity:.18;z-index:1;background-image:radial-gradient(rgba(255,255,255,.32) .55px,transparent .8px);background-size:8px 8px;mask-image:linear-gradient(90deg,#000,transparent 75%);pointer-events:none}
+    .hero-content{position:relative;z-index:2;width:min(var(--max),calc(100% - 52px));margin:0 auto 115px}
+    .hero-kicker{font-size:10px;letter-spacing:.24em;text-transform:uppercase;font-weight:700;color:#d5d9df;display:flex;gap:14px;align-items:center}
+    .hero-kicker span{height:1px;width:32px;background:var(--red)}
+    .hero h1{font-size:clamp(56px,9vw,128px);font-weight:600;letter-spacing:-.075em;line-height:.85;margin:26px 0 28px;max-width:920px;color:#fff}
+    .hero h1 em{display:block;color:#d7dbe0;margin-top:12px}
+    .hero-deck{max-width:470px;color:#d0d3d8;font-size:16px;line-height:1.55}
+    .hero-actions{display:flex;gap:14px;align-items:center;margin-top:30px;flex-wrap:wrap}
+    .hero-meta{position:absolute;z-index:2;right:35px;bottom:35px;text-align:right;color:#e1e4e9;font-size:9px;letter-spacing:.16em;text-transform:uppercase;line-height:1.8}
+    .hero-bottom{position:absolute;z-index:2;left:35px;bottom:34px;display:flex;gap:11px;align-items:center;color:#c1c6ce;font-size:9px;letter-spacing:.18em;text-transform:uppercase}
+    .hero-bottom i{display:block;width:30px;height:1px;background:var(--red)}
+    .scroll-cue{position:absolute;right:34px;top:50%;z-index:2;writing-mode:vertical-rl;font-size:8px;letter-spacing:.22em;color:rgba(255,255,255,.7);text-transform:uppercase;display:flex;align-items:center;gap:10px}
+    .scroll-cue::after{content:"";height:54px;width:1px;background:var(--red)}
+    .intro{padding:124px 0 105px;text-align:center;background:var(--ink)}
+    .intro .section-heading{max-width:870px;margin:22px auto 20px}
+    .intro .lede{margin:0 auto;max-width:650px}
+    .phase-grid{margin-top:78px;display:grid;grid-template-columns:repeat(6,1fr);gap:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);text-align:left}
+    .phase-item{padding:25px 15px 28px 0;border-right:1px solid var(--line);min-height:138px}
+    .phase-item:not(:first-child){padding-left:16px}
+    .phase-item:last-child{border-right:0}
+    .phase-item span{font-size:9px;letter-spacing:.2em;color:var(--red);font-weight:700}
+    .phase-item h3{font-size:13px;line-height:1.25;margin:14px 0 6px;font-weight:700;letter-spacing:.01em}
+    .phase-item p{font-size:10px;line-height:1.5;color:#8e95a0;margin:0}
+    .phase-item:hover h3{color:#fff}
+    .visual-band{position:relative;min-height:480px;display:flex;align-items:flex-end;overflow:hidden;background:#141821}
+    .visual-band img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+    .visual-band::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,8,12,.78),rgba(5,8,12,.08) 72%),linear-gradient(0deg,rgba(4,6,10,.56),transparent 55%)}
+    .visual-band .visual-content{position:relative;z-index:1;width:min(var(--max),calc(100% - 52px));margin:0 auto;padding:60px 0 46px}
+    .visual-band .visual-content h2{font-size:clamp(34px,5.2vw,70px);line-height:.95;letter-spacing:-.055em;max-width:660px;margin:14px 0 17px}
+    .visual-band .visual-content p{max-width:490px;color:#d5d9df;font-size:14px}
+    .visual-caption{position:absolute;right:30px;bottom:26px;z-index:2;color:rgba(255,255,255,.72);font-size:9px;letter-spacing:.14em;text-transform:uppercase}
+    .section{padding:122px 0;background:var(--ink)}
+    .section.soft{background:#0f1217}
+    .section.light{background:var(--paper);color:#15181d}
+    .section.light .eyebrow{color:#666d77}
+    .section.light .section-heading{color:#11151a}
+    .section.light .lede{color:#4c535d}
+    .section.light .small,.section.light .fineprint{color:#606873}
+    .section-top{display:grid;grid-template-columns:1fr 1.05fr;gap:70px;align-items:end;margin-bottom:54px}
+    .section-top .section-heading{margin-bottom:0}
+    .section-top p{margin:0;max-width:540px}
+    .section-number{font-size:10px;color:var(--red);letter-spacing:.2em;font-weight:700;margin-bottom:12px}
+    .foundation-stat{background:var(--paper);color:#12151a;padding:68px 0}
+    .stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+    .stat{border-top:1px solid #d7d8d7;padding-top:13px;display:flex;justify-content:space-between;gap:20px;align-items:flex-end}
+    .stat strong{font-size:clamp(42px,6.2vw,80px);line-height:.95;letter-spacing:-.07em;font-weight:500}
+    .stat span{max-width:140px;font-size:10px;line-height:1.45;color:#69717b;text-align:right;padding-bottom:5px}
+    .stat-note{font-size:10px;color:#68717b;margin-top:23px}
+    .manifesto{padding:98px 0 102px;background:linear-gradient(180deg,#11151b,#0a0c10)}
+    .manifesto-grid{display:grid;grid-template-columns:.85fr 1.2fr;gap:9vw;align-items:start}
+    .manifesto h2{font-size:clamp(40px,6.3vw,88px);line-height:.95;letter-spacing:-.065em;margin:18px 0 0}
+    .manifesto-copy{padding-top:16px}
+    .manifesto-copy .quote{font-family:var(--serif);font-size:clamp(23px,2.9vw,38px);line-height:1.17;color:#fff;max-width:690px;margin:0 0 28px}
+    .manifesto-copy p{color:#aeb5be;max-width:590px}
+    .manifesto-copy .label{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--red);font-weight:700}
+    .purpose-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:70px}
+    .purpose-card{border:1px solid var(--line);padding:26px 27px 30px;min-height:210px;background:rgba(255,255,255,.025)}
+    .purpose-card span{font-size:9px;letter-spacing:.18em;color:var(--red);font-weight:700;text-transform:uppercase}
+    .purpose-card h3{font-size:20px;margin:23px 0 13px;letter-spacing:-.02em}
+    .purpose-card p{font-size:13px;line-height:1.65;color:#adb4be;margin:0}
+    .flow{display:grid;grid-template-columns:repeat(6,1fr);margin-top:38px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+    .flow-step{position:relative;padding:21px 14px 25px 0;border-right:1px solid var(--line);min-height:145px}
+    .flow-step:not(:first-child){padding-left:16px}
+    .flow-step:last-child{border:0}
+    .flow-step b{display:block;font-size:9px;letter-spacing:.2em;color:var(--red)}
+    .flow-step h3{font-size:15px;margin:23px 0 9px}
+    .flow-step p{font-size:10px;color:#98a0aa;line-height:1.55;margin:0}
+    .service-list{display:flex;flex-direction:column;gap:15px;margin-top:42px}
+    .service-band{position:relative;display:block;min-height:380px;background:#141920;overflow:hidden;border:1px solid rgba(255,255,255,.04)}
+    .service-band.reverse{display:block}
+    .service-image{position:absolute;inset:0;min-height:0;overflow:hidden}
+    .service-image img{width:100%;height:100%;min-height:0;object-fit:cover;transition:transform .7s cubic-bezier(.2,.7,.2,1)}
+    .service-band:hover .service-image img{transform:scale(1.035)}
+    .service-image::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(6,8,12,.95) 0%,rgba(6,8,12,.78) 34%,rgba(6,8,12,.08) 100%),linear-gradient(0deg,rgba(6,8,12,.42),transparent 58%)}
+    .service-band.reverse .service-image::after{background:linear-gradient(270deg,rgba(6,8,12,.95) 0%,rgba(6,8,12,.78) 34%,rgba(6,8,12,.08) 100%),linear-gradient(0deg,rgba(6,8,12,.42),transparent 58%)}
+    .service-copy{position:relative;z-index:1;width:min(49%,540px);min-height:380px;padding:38px 42px;display:flex;flex-direction:column;justify-content:center}
+    .service-band.reverse .service-copy{margin-left:auto}
+    .service-copy .service-num{font-size:9px;letter-spacing:.2em;color:var(--red);font-weight:700}
+    .service-copy h3{font-size:26px;line-height:1.03;letter-spacing:-.04em;margin:14px 0 12px}
+    .service-copy p{color:#abb2bc;font-size:13px;line-height:1.65;margin:0 0 18px}
+    .service-copy .status{font-size:9px;text-transform:uppercase;letter-spacing:.14em;color:#d7dbe0;border-left:2px solid var(--red);padding-left:10px;margin-top:7px}
+    .list-inline{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0 0;padding:0;list-style:none}
+    .list-inline li{font-size:9px;color:#d1d5dc;border:1px solid rgba(255,255,255,.14);padding:7px 9px;letter-spacing:.04em}
+    .audience-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:48px}
+    .audience-card{border-top:2px solid var(--red);padding:24px 19px 20px;background:#151920;min-height:210px}
+    .audience-card b{font-size:9px;letter-spacing:.18em;color:#afb6bf;text-transform:uppercase}
+    .audience-card h3{font-size:19px;line-height:1.15;margin:22px 0 10px}
+    .audience-card p{font-size:11px;color:#a2aab4;line-height:1.6;margin:0}
+    .team-strip{display:grid;grid-template-columns:1fr 1.4fr;gap:40px;border-top:1px solid var(--line);padding-top:38px;margin-top:60px}
+    .team-strip h3{font-size:24px;line-height:1.1;margin:0}
+    .team-names{display:grid;grid-template-columns:repeat(2,1fr);gap:18px 25px}
+    .person{border-bottom:1px solid var(--line);padding-bottom:13px}
+    .person strong{font-size:13px;display:block}
+    .person span{font-size:10px;color:#9ba2ad;line-height:1.5;display:block;margin-top:4px}
+    .team-note{grid-column:2;color:#8e96a1;font-size:10px;margin-top:-12px}
+    .quote-overlay{background:var(--paper);color:#12151a;padding:80px 0}
+    .quote-overlay .quote-row{display:grid;grid-template-columns:.8fr 1.2fr;gap:8vw;align-items:start}
+    .quote-overlay h2{font-size:clamp(36px,5.5vw,75px);line-height:.98;letter-spacing:-.06em;margin:0}
+    .quote-overlay blockquote{font-family:var(--serif);font-size:clamp(22px,3vw,42px);line-height:1.18;margin:0;max-width:760px}
+    .quote-overlay .attribution{font-family:var(--sans);font-size:9px;text-transform:uppercase;letter-spacing:.17em;color:#727a83;margin-top:24px;display:block}
+    .position-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:44px}
+    .position-card{padding:24px 21px 26px;border:1px solid var(--line);min-height:210px}
+    .position-card span{font-size:10px;color:var(--red);font-weight:700;letter-spacing:.2em}
+    .position-card h3{font-size:18px;line-height:1.1;margin:21px 0 11px}
+    .position-card p{font-size:11px;color:#a4abb4;line-height:1.6;margin:0}
+    .versus{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:30px}
+    .versus > div{padding:28px 30px;background:#151a21;border-top:2px solid #68717c}
+    .versus > div.good{border-color:var(--red)}
+    .versus h3{font-size:10px;text-transform:uppercase;letter-spacing:.18em;margin:0 0 18px;color:#c4cad1}
+    .versus ul{padding-left:17px;color:#aeb5be;font-size:12px;line-height:1.8;margin:0}
+    .value-table{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:38px}
+    .value-cell{background:#101319;padding:24px 25px;min-height:148px}
+    .value-cell span{font-size:9px;color:var(--red);letter-spacing:.18em;text-transform:uppercase;font-weight:700}
+    .value-cell h3{font-size:18px;margin:13px 0 8px}
+    .value-cell p{font-size:11px;color:#a8afb9;max-width:420px;margin:0}
+    .promise-ribbon{padding:55px 0;background:var(--red);color:#fff}
+    .promise-ribbon .ribbon-inner{display:flex;justify-content:space-between;align-items:center;gap:30px}
+    .promise-ribbon h2{font-size:clamp(25px,3.5vw,44px);line-height:1;letter-spacing:-.04em;margin:0}
+    .promise-ribbon p{font-size:9px;letter-spacing:.17em;text-transform:uppercase;max-width:220px;text-align:right;margin:0;color:rgba(255,255,255,.83)}
+    .values-list{display:grid;grid-template-columns:repeat(5,1fr);gap:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:44px}
+    .value-item{padding:24px 17px 26px 0;border-right:1px solid var(--line);min-height:180px}
+    .value-item:not(:first-child){padding-left:16px}
+    .value-item:last-child{border:0}
+    .value-item b{font-size:9px;color:var(--red);letter-spacing:.18em}
+    .value-item h3{font-size:17px;margin:20px 0 8px}
+    .value-item p{font-size:10px;color:#a3aab4;line-height:1.55;margin:0}
+    .tone-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:60px;margin-top:72px}
+    .tone-grid h3{font-size:25px;line-height:1.1;margin:0}
+    .tone-list{border-top:1px solid var(--line)}
+    .tone-row{display:grid;grid-template-columns:1fr 1.3fr;gap:22px;padding:14px 0;border-bottom:1px solid var(--line);align-items:start}
+    .tone-row .avoid{font-size:11px;color:#777f8a;text-decoration:line-through}
+    .tone-row .say{font-size:12px;color:#e1e4e8}
+    .tone-row .say::before{content:"SAY  /  ";font-size:8px;letter-spacing:.14em;color:var(--red);font-weight:700}
+    .storyline{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:40px}
+    .story-step{border-top:1px solid rgba(255,255,255,.25);padding-top:16px}
+    .story-step span{font-size:9px;color:var(--red);letter-spacing:.18em;text-transform:uppercase;font-weight:700}
+    .story-step p{font-size:12px;color:#aeb5be;line-height:1.6}
+    .tagline-options{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:35px}
+    .tagline{border:1px solid var(--line);padding:22px 22px 24px;min-height:150px}
+    .tagline.recommended{border-color:var(--red);background:rgba(181,31,53,.08)}
+    .tagline b{font-size:9px;letter-spacing:.18em;color:var(--red);text-transform:uppercase}
+    .tagline h3{font-size:20px;line-height:1.2;margin:17px 0 9px}
+    .tagline p{font-size:10px;color:#a9b0b9;margin:0}
+    .ci-intro{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+    .logo-board{background:#10131a;padding:38px;min-height:355px;display:flex;align-items:center;justify-content:center;border:1px solid #272c34;position:relative;overflow:hidden}
+    .logo-board::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.08) .6px,transparent .7px);background-size:7px 7px;opacity:.3}
+    .logo-board img{width:min(280px,75%);height:auto;position:relative;filter:drop-shadow(0 12px 25px rgba(0,0,0,.4))}
+    .ci-explainer h3{font-size:24px;line-height:1.1;margin:0 0 13px;color:#15191e}
+    .ci-explainer p{font-size:13px;color:#505762;line-height:1.7}
+    .meaning-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:35px}
+    .meaning{border-top:1px solid #c5c8c9;padding-top:14px}
+    .meaning b{font-size:9px;text-transform:uppercase;letter-spacing:.18em;color:#b51f35}
+    .meaning h4{font-size:16px;margin:12px 0 6px}
+    .meaning p{font-size:11px;color:#5c636d;line-height:1.6;margin:0}
+    .ci-rules{display:grid;grid-template-columns:1fr 1fr;gap:36px;margin-top:65px}
+    .rule-box{border-top:1px solid #c5c8c9;padding-top:15px}
+    .rule-box h3{font-size:18px;margin:0 0 14px}
+    .rule-box ul{padding-left:17px;margin:0;color:#535b65;font-size:11px;line-height:1.85}
+    .swatches{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:30px}
+    .swatch{min-height:150px;padding:14px;display:flex;flex-direction:column;justify-content:space-between;color:white}
+    .swatch span{font-size:8px;letter-spacing:.17em;text-transform:uppercase;font-weight:700}
+    .swatch strong{font-size:14px;letter-spacing:.05em}
+    .swatch small{font-size:7px;letter-spacing:.025em;opacity:.82;line-height:1.35}
+    .swatch.dark{background:#171b23}.swatch.red{background:#b51f35}.swatch.silver{background:#c4c9d1;color:#15181d}.swatch.white{background:#fff;color:#171b23;border:1px solid #d9dcdf}
+    .type-specimen{display:grid;grid-template-columns:.65fr 1.35fr;gap:25px;align-items:start;margin-top:56px;padding:29px 0;border-top:1px solid #c5c8c9;border-bottom:1px solid #c5c8c9}
+    .type-label{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:#7b818a;font-weight:700}
+    .type-sample{font-size:48px;line-height:.95;letter-spacing:-.055em;color:#11151a}
+    .type-sample.serif{font-family:var(--serif);font-weight:400;letter-spacing:-.04em}
+    .type-details{font-size:10px;color:#626a74;line-height:1.55;margin-top:11px}
+    .graphic-language{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:50px}
+    .graphic-card{background:#e8e9e7;padding:25px;min-height:195px;position:relative;overflow:hidden}
+    .graphic-card h3{font-size:14px;margin:0 0 10px;position:relative;z-index:1}
+    .graphic-card p{font-size:10px;color:#5a626d;max-width:240px;position:relative;z-index:1}
+    .graphic-card .shield-graphic{position:absolute;right:-8px;bottom:-26px;width:135px;height:155px;border:5px solid rgba(181,31,53,.35);clip-path:polygon(50% 0,100% 22%,93% 70%,50% 100%,7% 70%,0 22%);opacity:.65}
+    .graphic-card .rings{position:absolute;width:155px;height:155px;border-radius:50%;border:2px solid rgba(20,24,30,.3);right:6px;bottom:-55px}
+    .graphic-card .rings::after,.graphic-card .rings::before{content:"";position:absolute;border:1px solid rgba(20,24,30,.3);border-radius:50%;inset:14px}.graphic-card .rings::before{inset:32px;border-color:rgba(181,31,53,.55)}
+    .uniform-feature{position:relative;display:block;min-height:500px;margin-top:78px;background:#101319;color:#fff;overflow:hidden}
+    .uniform-feature figure{margin:0;position:absolute;inset:0;min-height:0;overflow:hidden}
+    .uniform-feature figure img{width:100%;height:100%;position:absolute;inset:0;object-fit:cover;object-position:center 46%}
+    .uniform-feature figure::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(8,10,14,.95) 0%,rgba(8,10,14,.78) 35%,rgba(8,10,14,.04) 78%),linear-gradient(0deg,rgba(8,10,14,.4),transparent 54%)}
+    .uniform-feature figcaption{position:absolute;right:18px;bottom:17px;font-size:8px;text-transform:uppercase;letter-spacing:.17em;z-index:1;color:#e1e3e7;background:rgba(5,7,10,.58);padding:7px 9px}
+    .uniform-copy{position:relative;z-index:1;width:min(50%,620px);min-height:500px;padding:52px 46px;display:flex;flex-direction:column;justify-content:center}
+    .uniform-copy h3{font-size:30px;line-height:1.02;letter-spacing:-.04em;margin:13px 0}
+    .uniform-copy p{font-size:12px;color:#b6bdc6}
+    .uniform-copy ul{padding-left:16px;margin:13px 0 0;color:#c7ccd3;font-size:10px;line-height:1.8}
+    .mockup-row{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center;margin-top:74px}
+    .mockup-row figure{margin:0;position:relative;overflow:hidden;background:#141820}
+    .mockup-row figure img{width:100%;aspect-ratio:1.6;object-fit:cover}
+    .mockup-row figcaption{position:absolute;left:14px;bottom:14px;background:rgba(6,8,11,.72);padding:7px 9px;font-size:8px;text-transform:uppercase;letter-spacing:.15em}
+    .mockup-copy h3{font-size:28px;line-height:1.04;letter-spacing:-.04em;margin:0 0 14px}
+    .mockup-copy p{font-size:12px;color:#545c66;line-height:1.7}
+    .paper-stage{margin-top:65px;background:#e4e5e3;padding:55px 6%;display:grid;grid-template-columns:1.2fr .8fr;gap:32px;align-items:center;min-height:420px;position:relative;overflow:hidden}
+    .paper-stage::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(20,24,30,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(20,24,30,.035) 1px,transparent 1px);background-size:30px 30px;pointer-events:none}
+    .paper-mockup{position:relative;z-index:1;background:#fff;color:#15191e;box-shadow:0 25px 55px rgba(10,14,20,.2);padding:31px 34px;min-height:300px;transform:rotate(-2deg)}
+    .paper-brand{display:flex;align-items:center;gap:11px;border-bottom:1px solid #d8dbdd;padding-bottom:19px}
+    .paper-brand img{width:35px;height:40px;object-fit:contain;background:#11151b}
+    .paper-brand b{font-size:11px;letter-spacing:.14em;display:block}.paper-brand small{font-size:7px;letter-spacing:.19em;display:block;color:#6f7781}
+    .paper-lines{margin-top:25px}.paper-lines i{display:block;height:5px;background:#e5e7e8;margin:11px 0;width:75%}.paper-lines i.short{width:45%}.paper-lines i.red{width:24%;height:3px;background:var(--red);margin-top:20px}
+    .paper-foot{margin-top:36px;border-top:1px solid #d8dbdd;padding-top:11px;font-size:7px;color:#747b84;letter-spacing:.08em}
+    .id-card{position:relative;z-index:1;background:#12161d;color:#fff;padding:24px;width:min(100%,260px);min-height:165px;margin:0 auto;box-shadow:0 20px 35px rgba(10,14,20,.2);transform:rotate(4deg)}
+    .id-card::after{content:"";position:absolute;left:0;bottom:0;width:100%;height:5px;background:var(--red)}
+    .id-head{display:flex;align-items:center;gap:9px}.id-head img{width:29px;height:33px}.id-head strong{font-size:8px;letter-spacing:.12em}.id-head small{display:block;color:#aeb5be;font-size:6px;letter-spacing:.16em}
+    .id-name{margin-top:21px;font-size:10px;font-weight:700}.id-role{font-size:7px;color:#aeb5be;letter-spacing:.1em;text-transform:uppercase;margin-top:3px}
+    .stationery-caption{position:relative;z-index:1;color:#313842}.stationery-caption .eyebrow{color:#545c66}.stationery-caption h3{font-size:26px;line-height:1.05;letter-spacing:-.04em;margin:14px 0}.stationery-caption p{font-size:11px;line-height:1.65;color:#565e68}
+    .brand-checklist{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:35px}
+    .brand-check{border-top:1px solid #c5c8c9;padding:13px 8px 0 0}.brand-check b{font-size:9px;color:#b51f35;letter-spacing:.15em}.brand-check p{font-size:10px;color:#535b65;line-height:1.5}
+    .experience-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-top:42px}
+    .journey{background:#141920;padding:28px 28px 30px;border-top:2px solid var(--red)}
+    .journey h3{font-size:21px;line-height:1.1;margin:0 0 20px}
+    .journey-steps{display:grid;grid-template-columns:repeat(2,1fr);gap:13px 20px}
+    .journey-step{display:grid;grid-template-columns:27px 1fr;gap:9px;align-items:start}
+    .journey-step b{font-size:9px;color:var(--red);letter-spacing:.12em;padding-top:3px}
+    .journey-step p{font-size:10px;color:#b0b7c0;line-height:1.55;margin:0}
+    .incident-flow{display:grid;grid-template-columns:repeat(6,1fr);gap:7px;margin:40px 0 0}
+    .incident-step{position:relative;min-height:94px;padding:15px 13px;background:#171c24;border:1px solid rgba(255,255,255,.07)}
+    .incident-step:not(:last-child)::after{content:"›";position:absolute;right:-9px;top:32px;color:var(--red);font-size:17px;z-index:1}
+    .incident-step span{font-size:8px;color:var(--red);letter-spacing:.15em;font-weight:700}
+    .incident-step b{display:block;font-size:10px;line-height:1.35;margin-top:9px}
+    .experience-image{position:relative;display:block;margin-top:70px;background:#151a21;min-height:480px;overflow:hidden}
+    .experience-image figure{margin:0;position:absolute;inset:0;min-height:0;overflow:hidden}
+    .experience-image figure::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(8,10,14,.96) 0%,rgba(8,10,14,.78) 36%,rgba(8,10,14,.03) 82%),linear-gradient(0deg,rgba(8,10,14,.35),transparent 55%)}
+    .experience-image img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
+    .experience-image figcaption{position:absolute;bottom:16px;right:18px;z-index:1;font-size:8px;letter-spacing:.16em;text-transform:uppercase;background:rgba(5,7,10,.7);padding:7px 9px}
+    .experience-image .image-copy{position:relative;z-index:1;width:min(51%,620px);min-height:480px;padding:45px;display:flex;flex-direction:column;justify-content:center}
+    .image-copy h3{font-size:28px;line-height:1.05;margin:0 0 15px;letter-spacing:-.04em}
+    .image-copy p{font-size:12px;color:#afb6bf}
+    .image-copy ul{font-size:10px;color:#c0c6ce;line-height:1.8;padding-left:16px}
+    .metrics-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:32px}
+    .metric-card{padding:23px 18px;background:#171c23;border:1px solid rgba(255,255,255,.07)}
+    .metric-card span{font-size:8px;letter-spacing:.16em;text-transform:uppercase;color:#9ea5af}
+    .metric-card strong{display:block;font-size:clamp(25px,3vw,40px);letter-spacing:-.055em;margin:17px 0 9px}
+    .metric-card small{font-size:9px;color:#9299a4;line-height:1.5;display:block}
+    .business-model{background:var(--paper);color:#14171b;padding:83px 0}
+    .business-model .eyebrow{color:#666d77}
+    .business-model .section-heading{color:#11151a}
+    .revenue-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#d5d7d7;margin-top:37px;border:1px solid #d5d7d7}
+    .revenue-card{background:#f6f6f3;padding:22px 21px;min-height:165px}
+    .revenue-card span{font-size:10px;color:#6c737c}
+    .revenue-card strong{font-size:clamp(27px,3.3vw,43px);display:block;line-height:1;letter-spacing:-.055em;margin:17px 0 7px}
+    .revenue-card small{font-size:9px;color:#6e7680}
+    .economics-note{font-size:10px;color:#5c646e;max-width:860px;margin-top:18px;line-height:1.6}
+    .growth-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:42px}
+    .growth-step{border-top:2px solid var(--red);background:#151920;padding:22px 20px;min-height:200px}
+    .growth-step span{font-size:9px;color:var(--red);letter-spacing:.19em;font-weight:700}
+    .growth-step h3{font-size:18px;margin:18px 0 9px}.growth-step p{font-size:10px;color:#aab1bb;line-height:1.6;margin:0}
+    .roadmap{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:45px}
+    .roadmap-card{padding:27px;background:#151a21;min-height:260px;position:relative;border-top:1px solid var(--line)}
+    .roadmap-card .days{font-size:10px;letter-spacing:.18em;color:var(--red);font-weight:700}
+    .roadmap-card h3{font-size:23px;line-height:1.05;margin:17px 0 15px}
+    .roadmap-card ul{padding-left:16px;color:#aeb5be;font-size:10px;line-height:1.8;margin:0}
+    .priority-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:40px}
+    .priority{border:1px solid var(--line);padding:22px 21px}
+    .priority b{font-size:9px;color:var(--red);letter-spacing:.18em}.priority h3{font-size:19px;margin:15px 0 9px}.priority p{font-size:11px;color:#aab1bb;line-height:1.6;margin:0}
+    .final-hero{min-height:620px;position:relative;display:flex;align-items:center;overflow:hidden;background:radial-gradient(circle at 80% 52%,rgba(181,31,53,.16),transparent 28%),linear-gradient(135deg,#171b23,#07090d 62%)}
+    .final-hero::before{content:"";position:absolute;right:4%;top:50%;width:min(44vw,540px);aspect-ratio:1;transform:translateY(-50%);background:url('assets/logo-symbol.png') center/contain no-repeat;opacity:.18;filter:drop-shadow(0 0 80px rgba(181,31,53,.15))}
+    .final-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(5,7,10,.12),rgba(5,7,10,.15) 72%),linear-gradient(0deg,rgba(5,7,10,.3),transparent)}
+    .final-content{z-index:1;position:relative;width:min(var(--max),calc(100% - 52px));margin:0 auto;padding:100px 0}
+    .final-content h2{font-size:clamp(52px,9vw,120px);letter-spacing:-.075em;line-height:.86;margin:22px 0 27px;max-width:900px}
+    .final-content h2 span{font-family:var(--serif);font-weight:400;color:#d2d7de}
+    .final-content p{font-size:16px;color:#c0c6ce;max-width:525px}
+    .final-note{margin-top:36px;padding-top:20px;border-top:1px solid rgba(255,255,255,.22);font-size:9px;color:#a9b0b9;letter-spacing:.14em;text-transform:uppercase;max-width:800px}
+    .site-footer{background:#f2f2ef;color:#11151a;padding:68px 0 24px}
+    .footer-top{display:grid;grid-template-columns:1.2fr .8fr;gap:60px;align-items:start;padding-bottom:44px;border-bottom:1px solid #d1d3d3}
+    .footer-brand{display:flex;gap:15px;align-items:center}.footer-brand img{width:54px;height:60px;object-fit:contain;background:#11151b}.footer-brand b{font-size:17px;letter-spacing:.12em;display:block}.footer-brand small{font-size:8px;letter-spacing:.21em;display:block;color:#6b727b;margin-top:4px}
+    .footer-title{font-size:28px;line-height:1.05;letter-spacing:-.04em;margin:25px 0 8px;max-width:450px}
+    .footer-copy{font-size:11px;color:#626a73;max-width:470px}
+    .footer-links{display:grid;grid-template-columns:repeat(2,1fr);gap:11px 30px;padding-top:14px}
+    .footer-links a{font-size:9px;text-transform:uppercase;letter-spacing:.15em;color:#313842}.footer-links a:hover{color:var(--red)}
+    .footer-bottom{display:flex;justify-content:space-between;gap:20px;align-items:center;padding-top:20px;font-size:8px;letter-spacing:.13em;text-transform:uppercase;color:#707781}
+    .footer-bottom span:last-child{max-width:650px;text-align:right;line-height:1.5}
+    .concept-note{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,.15);padding:8px 10px;font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:#b9c0c8}
+    .concept-note::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--red)}
+    .light-note{border-left:2px solid var(--red);padding-left:12px;color:#5e6570;font-size:10px;line-height:1.6}
+    .disclaimer{padding:21px 0;border-top:1px solid rgba(255,255,255,.1);font-size:9px;color:#8d95a0;line-height:1.6}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    [data-reveal]{opacity:0;transform:translateY(22px);transition:opacity .65s ease,transform .65s ease}
+    [data-reveal].seen{opacity:1;transform:none}
+    @media (max-width:1100px){
+      .site-nav{gap:15px;margin-right:18px}.site-nav a{font-size:8px}.brand-lockup{min-width:180px}
+      .phase-grid{grid-template-columns:repeat(3,1fr)}.phase-item:nth-child(3){border-right:0}.phase-item:nth-child(n+4){border-top:1px solid var(--line)}.phase-item:nth-child(4){padding-left:0}
+      .service-band,.service-band.reverse{grid-template-columns:1fr 1fr}.service-copy{padding:30px}
+    }
+    @media (max-width:820px){
+      :root{--navh:66px}.site-header{padding:0 20px}.brand-lockup{min-width:0}.brand-lockup img{width:34px;height:38px}.brand-lockup b{font-size:10px}.brand-lockup small{font-size:7px}
+      .site-nav{display:none;position:absolute;top:var(--navh);left:0;right:0;background:rgba(8,10,14,.98);padding:16px 20px 24px;flex-direction:column;align-items:stretch;gap:0;border-bottom:1px solid rgba(255,255,255,.14);margin:0}
+      .site-nav.open{display:flex}.site-nav a{font-size:10px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.08)}
+      .header-actions{gap:10px}.nav-download{font-size:8px;padding:11px 10px}.menu-toggle{display:block;width:38px;height:38px}
+      .hero{min-height:640px;height:88svh}.hero-content{margin-bottom:120px}.hero h1{font-size:clamp(55px,13vw,92px)}.hero-meta{right:20px;bottom:22px}.hero-bottom{left:20px;bottom:22px}.scroll-cue{right:19px}
+      .section{padding:86px 0}.intro{padding:94px 0 76px}.section-top{grid-template-columns:1fr;gap:17px;margin-bottom:34px}.section-top p{max-width:650px}
+      .stat-grid{grid-template-columns:1fr;gap:16px}.stat{align-items:center}.stat strong{font-size:57px}.stat span{max-width:160px}
+      .manifesto-grid{grid-template-columns:1fr;gap:36px}.manifesto h2{max-width:600px}.purpose-cards{grid-template-columns:1fr;gap:9px;margin-top:45px}.purpose-card{min-height:0}.flow{grid-template-columns:repeat(3,1fr)}.flow-step:nth-child(3){border-right:0}.flow-step:nth-child(n+4){border-top:1px solid var(--line)}.flow-step:nth-child(4){padding-left:0}
+      .service-band,.service-band.reverse{display:block;min-height:420px}.service-image,.service-image img{min-height:420px;height:100%}.service-image::after,.service-band.reverse .service-image::after{background:linear-gradient(0deg,rgba(6,8,12,.95) 0%,rgba(6,8,12,.75) 58%,rgba(6,8,12,.32) 100%)}.service-copy{width:min(100%,570px);min-height:420px;padding:29px}
+      .audience-grid{grid-template-columns:repeat(2,1fr)}.team-strip{grid-template-columns:1fr;gap:22px}.team-note{grid-column:1;margin-top:0}
+      .quote-overlay .quote-row{grid-template-columns:1fr;gap:24px}.position-grid{grid-template-columns:repeat(2,1fr)}.versus{grid-template-columns:1fr}.value-table{grid-template-columns:1fr}
+      .promise-ribbon .ribbon-inner{align-items:flex-start;flex-direction:column}.promise-ribbon p{text-align:left;max-width:none}
+      .values-list{grid-template-columns:repeat(2,1fr)}.value-item:nth-child(2n){border-right:0}.value-item:nth-child(n+3){border-top:1px solid var(--line)}.value-item:nth-child(3){padding-left:0}
+      .tone-grid{grid-template-columns:1fr;gap:24px}.storyline{grid-template-columns:repeat(2,1fr)}.tagline-options{grid-template-columns:1fr}.ci-intro{grid-template-columns:1fr;gap:28px}.logo-board{min-height:275px}.meaning-grid{grid-template-columns:1fr}.ci-rules{grid-template-columns:1fr}.swatches{grid-template-columns:repeat(2,1fr)}
+      .type-specimen{grid-template-columns:1fr;gap:12px}.type-sample{font-size:40px}.graphic-language{grid-template-columns:1fr}.uniform-feature{min-height:560px}.uniform-feature figure{inset:0;min-height:560px}.uniform-feature figure::after{background:linear-gradient(0deg,rgba(8,10,14,.97) 0%,rgba(8,10,14,.80) 48%,rgba(8,10,14,.18) 100%)}.uniform-feature figcaption{right:14px;bottom:14px}.uniform-copy{width:100%;min-height:560px;padding:30px 24px;justify-content:flex-end;padding-bottom:74px}
+      .mockup-row{grid-template-columns:1fr;gap:24px}.paper-stage{grid-template-columns:1fr;padding:38px 6%;gap:30px}.paper-mockup{min-height:270px}.brand-checklist{grid-template-columns:repeat(2,1fr)}
+      .experience-grid{grid-template-columns:1fr}.incident-flow{grid-template-columns:repeat(3,1fr)}.incident-step:nth-child(3)::after{display:none}.experience-image{min-height:570px}.experience-image figure{inset:0;min-height:570px}.experience-image figure::after{background:linear-gradient(0deg,rgba(8,10,14,.98) 0%,rgba(8,10,14,.82) 56%,rgba(8,10,14,.18) 100%)}.experience-image figcaption{right:12px;top:12px;bottom:auto}.experience-image .image-copy{width:100%;min-height:570px;padding:28px;justify-content:flex-end}
+      .metrics-grid{grid-template-columns:repeat(2,1fr)}.revenue-grid{grid-template-columns:repeat(2,1fr)}.growth-grid{grid-template-columns:repeat(2,1fr)}.roadmap{grid-template-columns:1fr}.priority-grid{grid-template-columns:1fr}
+      .footer-top{grid-template-columns:1fr;gap:28px}.footer-bottom{align-items:flex-start;flex-direction:column}.footer-bottom span:last-child{text-align:left}
+    }
+    @media (max-width:520px){
+      .wrap,.hero-content,.visual-band .visual-content,.final-content{width:calc(100% - 36px)}
+      .hero{min-height:620px}.hero-content{margin-bottom:108px}.hero-deck{font-size:14px;max-width:350px}.hero-actions{gap:9px}.button{font-size:8px;padding:13px 12px}.hero-meta{font-size:7px;right:17px;bottom:18px}.hero-bottom{font-size:7px;left:17px;bottom:18px}.scroll-cue{display:none}
+      .phase-grid{grid-template-columns:repeat(2,1fr)}.phase-item:nth-child(2n){border-right:0;padding-left:14px}.phase-item:nth-child(3){border-right:1px solid var(--line);padding-left:0}.phase-item:nth-child(4){padding-left:14px}.phase-item:nth-child(n+3){border-top:1px solid var(--line)}
+      .flow{grid-template-columns:repeat(2,1fr)}.flow-step:nth-child(2n){border-right:0;padding-left:14px}.flow-step:nth-child(3){border-right:1px solid var(--line);padding-left:0}.flow-step:nth-child(n+3){border-top:1px solid var(--line)}
+      .audience-grid{grid-template-columns:1fr}.team-names{grid-template-columns:1fr}.position-grid{grid-template-columns:1fr}.values-list{grid-template-columns:1fr}.value-item,.value-item:not(:first-child){padding:20px 0;border-right:0;border-top:1px solid var(--line);min-height:0}.value-item:first-child{border-top:0}.tone-row{grid-template-columns:1fr;gap:5px}.storyline{grid-template-columns:1fr}.incident-flow{grid-template-columns:repeat(2,1fr)}.incident-step:nth-child(2n)::after{display:none}.metrics-grid{grid-template-columns:1fr 1fr}.revenue-grid{grid-template-columns:1fr 1fr}.growth-grid{grid-template-columns:1fr}.brand-checklist{grid-template-columns:1fr 1fr}
+      .stat strong{font-size:45px}.stat span{font-size:9px}.stat-grid{gap:13px}.stat{padding-top:16px}
+      .paper-stage{padding:30px 19px}.paper-mockup{padding:25px 23px}.id-card{width:235px}.final-hero{min-height:540px}.footer-links{gap:10px 20px}
+    }
+    @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}[data-reveal]{opacity:1;transform:none}}
+    @media print{
+      .site-header,.top-progress,.hero-actions,.site-footer .footer-links,.menu-toggle{display:none!important}
+      body{background:#fff;color:#111}.section,.intro,.manifesto,.section.soft{break-inside:avoid}.hero{height:100vh;min-height:0;page-break-after:always}.section{padding:55px 0}.visual-band{min-height:320px}.button{display:none}
+    }
+  </style>
+</head>
+<body>
+  <div class="top-progress" aria-hidden="true"><span id="progress-line"></span></div>
+  <header class="site-header" id="site-header">
+    <a class="brand-lockup" href="#top" aria-label="Siyavikela, back to top">
+      <img src="assets/logo-symbol.png" alt="">
+      <span><b>SIYAVIKELA</b><small>SECURITY SERVICES</small></span>
+    </a>
+    <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+      <a href="#foundation">Foundation</a>
+      <a href="#positioning">Positioning</a>
+      <a href="#brand">Brand strategy</a>
+      <a href="#identity">Identity</a>
+      <a href="#experience">Experience</a>
+      <a href="#growth">Growth plan</a>
+    </nav>
+    <div class="header-actions">
+      <a class="nav-download" href="brand-strategy.pdf" download>Download PDF <span aria-hidden="true">↗</span></a>
+      <button class="menu-toggle" id="menu-toggle" aria-label="Open menu" aria-expanded="false">☰</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <img class="hero-image" src="assets/hero-dobsonville.jpg" alt="Concept image of a security team speaking with a resident on a Dobsonville-style residential street at dusk">
+      <div class="hero-content">
+        <div class="hero-kicker"><span></span> Brand development &amp; strategic positioning · 2026</div>
+        <h1 id="hero-title">Protection <em>that connects.</em></h1>
+        <p class="hero-deck">A community-rooted security brand built around professional protection, transparent service and local accountability.</p>
+        <div class="hero-actions">
+          <a class="button red" href="#overview">Explore the strategy <span class="arrow">↓</span></a>
+          <a class="button" href="brand-strategy.pdf" download>Download the presentation <span class="arrow">↗</span></a>
+        </div>
+      </div>
+      <div class="hero-bottom"><i></i> Dobsonville · Soweto · Gauteng</div>
+      <div class="hero-meta">Siyavikela Security Services<br>Strategic concept · October 2026</div>
+      <div class="scroll-cue">Scroll to explore</div>
+    </section>
+
+    <section class="intro" id="overview">
+      <div class="wrap">
+        <div class="eyebrow" style="justify-content:center">The strategic idea</div>
+        <h2 class="section-heading">A security company with a <em>stronger connection.</em></h2>
+        <p class="lede">Siyavikela’s opportunity is to become more than a recognisable logo: a credible, community-rooted security business with clear operating standards, a distinct identity and a responsible route to growth.</p>
+        <div class="phase-grid" aria-label="Six strategic phases">
+          <a class="phase-item" href="#foundation"><span>01 / FOUNDATION</span><h3>Define the business</h3><p>Purpose, mission, services and community.</p></a>
+          <a class="phase-item" href="#positioning"><span>02 / POSITIONING</span><h3>Earn preference</h3><p>Why clients should trust and choose Siyavikela.</p></a>
+          <a class="phase-item" href="#brand"><span>03 / BRAND STRATEGY</span><h3>Set the character</h3><p>Promise, values, personality and voice.</p></a>
+          <a class="phase-item" href="#identity"><span>04 / IDENTITY</span><h3>Build the system</h3><p>Logo, colour, type and practical applications.</p></a>
+          <a class="phase-item" href="#experience"><span>05 / EXPERIENCE</span><h3>Make it tangible</h3><p>Service journeys and clear communication.</p></a>
+          <a class="phase-item" href="#growth"><span>06 / GROWTH</span><h3>Grow responsibly</h3><p>Compliance, partnerships and a viable model.</p></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="visual-band" aria-label="Dobsonville community visual">
+      <img src="assets/community-dobsonville.jpg" alt="Concept image of residents taking part in a local community safety conversation">
+      <div class="visual-content">
+        <div class="eyebrow">01 / A local starting point</div>
+        <h2>Listen first.<br>Design for the place.</h2>
+        <p>Security priorities are local. The strongest offer begins by listening to residents, testing needs and agreeing the service before asking people to subscribe.</p>
+        <span class="concept-note">Illustrative concept image · not documentary evidence</span>
+      </div>
+      <div class="visual-caption">Dobsonville · Community-led by design</div>
+    </section>
+
+    <section class="foundation-stat" aria-label="Proposal starting points">
+      <div class="wrap">
+        <div class="eyebrow">Proposal starting points</div>
+        <div class="stat-grid">
+          <div class="stat"><strong>33</strong><span>community members noted as attending the 5 August 2026 safety meeting</span></div>
+          <div class="stat"><strong>180–200</strong><span>estimated households in the proposed initial target area</span></div>
+          <div class="stat"><strong>01</strong><span>neighbourhood to validate first: Dobsonville, before expansion</span></div>
+        </div>
+        <p class="stat-note">Figures are taken from the supplied community proposal and are starting assumptions—not independently verified market data. Confirm through a household survey and source records before external use.</p>
+      </div>
+    </section>
+
+    <section class="section" id="foundation">
+      <div class="wrap">
+        <div class="section-top" data-reveal>
+          <div><div class="section-number">PHASE 01</div><div class="eyebrow">Foundation</div><h2 class="section-heading">What are we <em>building?</em></h2></div>
+          <p class="lede">A professional security services company that protects people and property while developing the relationships, systems and capabilities needed to serve communities responsibly.</p>
+        </div>
+        <div class="manifesto-grid" data-reveal>
+          <div><span class="eyebrow">Our purpose</span><h2>Protection must be <em>experienced.</em></h2></div>
+          <div class="manifesto-copy">
+            <p class="quote">“To help create safer communities by providing professional, accountable security services that respond to local needs and protect people, property and peace of mind.”</p>
+            <p>Siyavikela exists to connect security concerns to practical arrangements: prevent where possible, report threats, coordinate appropriate responses and communicate clearly. A visible presence matters—but so do preparation, accountability and follow-through.</p>
+            <span class="label">The principle / Promise what can be delivered. Document what is delivered.</span>
+          </div>
+        </div>
+        <div class="purpose-cards" data-reveal>
+          <article class="purpose-card"><span>Mission / what we do</span><h3>Protect with purpose.</h3><p>Protect people, property and digital environments through trusted local expertise, appropriate technology and professional integrated security solutions—building safer communities today and a nationally trusted company for tomorrow.</p></article>
+          <article class="purpose-card"><span>Vision / where we are going</span><h3>Safer communities. Protected assets. Secure digital futures.</h3><p>Grow beyond traditional guarding only when the company has the capability, authorisations and service evidence to do so responsibly.</p></article>
+          <article class="purpose-card"><span>Operating idea</span><h3>Local knowledge. Professional standards.</h3><p>Community understanding is the starting advantage; disciplined systems, capable people and transparent service make it dependable.</p></article>
+        </div>
+        <div style="margin-top:88px" data-reveal>
+          <div class="eyebrow">Our operating philosophy</div>
+          <h3 style="font-size:clamp(24px,3vw,38px);letter-spacing:-.04em;line-height:1.05;margin:15px 0 0">Understand → prepare → connect → protect → account → improve.</h3>
+          <div class="flow">
+            <div class="flow-step"><b>01</b><h3>Understand</h3><p>Assess local concerns, risks and client requirements.</p></div>
+            <div class="flow-step"><b>02</b><h3>Prepare</h3><p>Define compliant services, staffing, tools and procedures.</p></div>
+            <div class="flow-step"><b>03</b><h3>Connect</h3><p>Coordinate with clients and relevant safety partners.</p></div>
+            <div class="flow-step"><b>04</b><h3>Protect</h3><p>Deliver the agreed authorised service to a clear standard.</p></div>
+            <div class="flow-step"><b>05</b><h3>Account</h3><p>Record incidents, update clients and report appropriately.</p></div>
+            <div class="flow-step"><b>06</b><h3>Improve</h3><p>Use evidence and feedback to strengthen delivery.</p></div>
+          </div>
+        </div>
+        <div style="margin-top:94px" data-reveal>
+          <div class="eyebrow">Service architecture</div>
+          <h3 style="font-size:clamp(28px,4vw,48px);letter-spacing:-.05em;line-height:1;margin:15px 0 12px">Four pillars. One accountable offer.</h3>
+          <p class="small" style="max-width:650px">These are strategic service categories, not confirmation that every capability is operational today. Advertise only services the business is authorised, equipped and staffed to deliver.</p>
+        </div>
+        <div class="service-list">
+          <article class="service-band" data-reveal>
+            <div class="service-image"><img src="assets/vehicle-branded.jpg" alt="Concept mock-up of a charcoal Siyavikela security vehicle with the supplied logo on a Soweto residential street"></div>
+            <div class="service-copy"><span class="service-num">01 / PHYSICAL SECURITY</span><h3>Visible, professional protection.</h3><p>Potential residential and commercial guarding, patrol and response services—defined by location, coverage, staffing, authority and a documented service level.</p><ul class="list-inline"><li>Residential</li><li>Commercial</li><li>Agreed coverage</li></ul><span class="status">Vehicle branding concept · not an operating fleet claim</span></div>
+          </article>
+          <article class="service-band reverse" data-reveal>
+            <div class="service-image"><img src="assets/home-technology.jpg" alt="Concept image of a qualified technician discussing a camera installation with a Soweto homeowner"></div>
+            <div class="service-copy"><span class="service-num">02 / ELECTRONIC SECURITY</span><h3>Technology with a clear use case.</h3><p>Potential alarms, panic alerts, access monitoring and CCTV solutions. Choose equipment around need, affordability, reliability and privacy—not novelty.</p><ul class="list-inline"><li>Alarms</li><li>CCTV</li><li>Access monitoring</li></ul><span class="status">Scope, suppliers and monitoring arrangements to be verified</span></div>
+          </article>
+          <article class="service-band" data-reveal>
+            <div class="service-image"><img src="assets/drone-soweto.jpg" alt="Concept visual of a drone and operator over a Soweto neighbourhood"></div>
+            <div class="service-copy"><span class="service-num">03 / TRACKING &amp; PERSONAL SAFETY</span><h3>Useful tools, responsibly applied.</h3><p>Potential vehicle tracking and personal safety devices, subject to supplier selection, feasibility, data protection and final service arrangements.</p><ul class="list-inline"><li>Vehicle tracking</li><li>Personal safety</li><li>Drone concept</li></ul><span class="status">Drone activity requires separate permissions and operational review</span></div>
+          </article>
+          <article class="service-band reverse" data-reveal>
+            <div class="service-image"><img src="assets/operations-room.jpg" alt="Concept image of a security operator reviewing non-identifiable camera views in a small operations workspace"></div>
+            <div class="service-copy"><span class="service-num">04 / COMMUNITY SAFETY COORDINATION</span><h3>Connect the right people.</h3><p>Structured incident communication and cooperation with residents, clients and relevant safety structures—within each party’s lawful role.</p><ul class="list-inline"><li>Clear reporting</li><li>Appropriate escalation</li><li>Community liaison</li></ul><span class="status">No substitute for SAPS or emergency services</span></div>
+          </article>
+        </div>
+        <div style="margin-top:76px" data-reveal>
+          <div class="section-top" style="margin-bottom:20px"><div><div class="eyebrow">Who we serve</div><h3 style="font-size:35px;line-height:1;letter-spacing:-.05em;margin:16px 0">Start with the people closest to the need.</h3></div><p class="small">Dobsonville is the proposed initial focus. Demand, area boundaries, affordability and participation need validation before a service launch.</p></div>
+          <div class="audience-grid">
+            <article class="audience-card"><b>Primary</b><h3>Households &amp; families</h3><p>Residents seeking clear security options, practical information and a transparent way to raise concerns.</p></article>
+            <article class="audience-card"><b>Secondary</b><h3>Local businesses</h3><p>Commercial properties needing security aligned to operating hours, premises and risk.</p></article>
+            <article class="audience-card"><b>Institutional</b><h3>Schools &amp; organisations</h3><p>Potential safety cooperation only where scope, consent, safeguarding and responsible authorities are agreed.</p></article>
+            <article class="audience-card"><b>Future</b><h3>Property &amp; fleet clients</h3><p>Expand when the operating model, resources and compliance support a reliable service.</p></article>
+          </div>
+        </div>
+        <div class="team-strip" data-reveal>
+          <div><div class="eyebrow">Founding contributors</div><h3>Local perspective.<br>Complementary capability.</h3></div>
+          <div class="team-names">
+            <div class="person"><strong>Thato Radise</strong><span>Marketing, community engagement, business development &amp; partnerships.</span></div>
+            <div class="person"><strong>Tendi Matloha</strong><span>Proposed vehicle-tracking leadership and operational development; verify PSiRA grade/status before public use.</span></div>
+            <div class="person"><strong>Andile Dambuza</strong><span>Security operational development; verify PSiRA grade/status before public use.</span></div>
+            <div class="person"><strong>Papi Raborife</strong><span>Technology, security innovation, service and brand development.</span></div>
+          </div>
+          <p class="team-note">The supplied proposal separately identifies Emmanuel Blessing Rotenda Matloha and Maxaba Andile Dambuza as CIPC-registered directors. Confirm current official records, appointments and role descriptions before publishing. Contributors, proposed leads and directors should not be presented as interchangeable roles.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="visual-band" id="positioning" aria-label="Dobsonville street setting">
+      <img src="assets/dobsonville-street.jpg" alt="Concept photograph of a residential street in Dobsonville at blue hour">
+      <div class="visual-content">
+        <div class="eyebrow">PHASE 02 / POSITIONING</div>
+        <h2>Local understanding.<br>Professional standards.</h2>
+        <p>Security is more than a guard at the gate. It is a service people can understand, evaluate and trust.</p>
+        <span class="concept-note">Local-inspired visualisation · not documentary evidence</span>
+      </div>
+      <div class="visual-caption">Dobsonville · Professional protection, rooted in community</div>
+    </section>
+
+    <section class="section soft">
+      <div class="wrap">
+        <div class="section-top" data-reveal>
+          <div><div class="section-number">PHASE 02</div><div class="eyebrow">Strategic positioning</div><h2 class="section-heading">A reason to choose <em>Siyavikela.</em></h2></div>
+          <p class="lede">Position Siyavikela as a community-rooted, professionally operated security services company combining local understanding with structured operations, appropriate technology and transparent service.</p>
+        </div>
+        <div class="quote-overlay" style="padding:0;background:transparent;color:#fff" data-reveal>
+          <div class="quote-row"><h2 style="font-size:clamp(31px,4.3vw,58px)">The position<br>we can own.</h2><blockquote>“For households, businesses and institutions seeking dependable security, Siyavikela works to combine professional protection, coordinated communication and appropriate technology with clear, accountable service.”<span class="attribution">Strategic positioning statement · delivery must substantiate the promise</span></blockquote></div>
+        </div>
+        <div class="position-grid" data-reveal>
+          <article class="position-card"><span>01</span><h3>Local presence</h3><p>A service model informed by the community’s real concerns—not a generic security template.</p></article>
+          <article class="position-card"><span>02</span><h3>Coordinated operations</h3><p>Clear processes for reporting, escalation, communication and follow-through.</p></article>
+          <article class="position-card"><span>03</span><h3>Appropriate technology</h3><p>Tools selected for a real use case, affordability, operational capability and privacy.</p></article>
+          <article class="position-card"><span>04</span><h3>Transparent service</h3><p>Documented responsibilities, honest claims, agreed service levels and useful reporting.</p></article>
+        </div>
+        <div class="versus" data-reveal>
+          <div><h3>Avoid becoming</h3><ul><li>The cheapest provider at any cost.</li><li>An informal neighbourhood patrol presented as a fully operational security company.</li><li>A technology brand without operational security capability.</li><li>A provider promising guaranteed safety, instant response or unverified approvals.</li></ul></div>
+          <div class="good"><h3>Build toward</h3><ul><li>A trusted, accountable security partner with a clearly defined offer.</li><li>Service quality supported by people, procedures and real resources.</li><li>Claims that distinguish what is available now from what is planned.</li><li>Community confidence earned through evidence and conduct.</li></ul></div>
+        </div>
+        <div class="eyebrow" style="margin-top:65px" data-reveal>Value proposition by audience</div>
+        <div class="value-table" data-reveal>
+          <div class="value-cell"><span>For residents</span><h3>Clarity and a route to participate.</h3><p>Understand the service, price, boundaries and how to raise a concern or request assistance.</p></div>
+          <div class="value-cell"><span>For businesses</span><h3>Security aligned to the property.</h3><p>Solutions shaped around commercial risk, hours, site requirements and agreed service levels.</p></div>
+          <div class="value-cell"><span>For schools</span><h3>Careful, agreed cooperation.</h3><p>Potential safety initiatives with school management and relevant authorities, with safeguarding built in.</p></div>
+          <div class="value-cell"><span>For partners</span><h3>Clear responsibilities.</h3><p>A potential partner that respects lawful roles, communicates clearly and complements existing capability.</p></div>
+        </div>
+        <div class="manifesto-copy" style="margin-top:64px;max-width:840px" data-reveal><span class="label">Brand territory</span><p class="quote" style="font-size:clamp(28px,4vw,50px);margin-top:14px">Protection that connects.</p><p>Connect people to information, clients to response arrangements, operations to suitable technology, and communities to relevant safety partners. A broader story than “security guards” that remains grounded in the core business.</p></div>
+      </div>
+    </section>
+
+    <section class="promise-ribbon" aria-label="Brand promise">
+      <div class="wrap ribbon-inner"><h2>Professional Protection.<br>Transparent Service.<br>Community Accountability.</h2><p>The Siyavikela brand promise<br>One standard across every touchpoint</p></div>
+    </section>
+
+    <section class="section" id="brand">
+      <div class="wrap">
+        <div class="section-top" data-reveal>
+          <div><div class="section-number">PHASE 03</div><div class="eyebrow">Brand strategy</div><h2 class="section-heading">We protect more than <em>property.</em></h2></div>
+          <p class="lede">Security affects how people live, work, travel and participate in a community. The brand should create reassurance through professionalism—not fear.</p>
+        </div>
+        <div class="values-list" data-reveal>
+          <article class="value-item"><b>01 / INTEGRITY</b><h3>Act honestly.</h3><p>Operate lawfully, responsibly and with clear statements about capability.</p></article>
+          <article class="value-item"><b>02 / VIGILANCE</b><h3>Stay prepared.</h3><p>Take risks seriously and maintain awareness of responsibilities.</p></article>
+          <article class="value-item"><b>03 / COMMUNITY</b><h3>Respect people.</h3><p>Listen to the communities and clients the company serves.</p></article>
+          <article class="value-item"><b>04 / ACCOUNTABILITY</b><h3>Own the service.</h3><p>Document, communicate and take responsibility for agreed work.</p></article>
+          <article class="value-item"><b>05 / INNOVATION</b><h3>Use technology well.</h3><p>Adopt useful tools without compromising privacy or reliability.</p></article>
+        </div>
+        <div class="tone-grid" data-reveal>
+          <div><div class="eyebrow">Voice &amp; character</div><h3>Authoritative, alert and human.<br>Never alarmist.</h3><p class="small" style="margin-top:16px">The brand should feel trustworthy, professional, approachable and progressive. Avoid militaristic language, excessive jargon and fear-led marketing.</p></div>
+          <div class="tone-list">
+            <div class="tone-row"><span class="avoid">“Crime is everywhere. You are not safe.”</span><span class="say">Let’s identify the security risks and establish practical measures to address them.</span></div>
+            <div class="tone-row"><span class="avoid">“We guarantee your safety.”</span><span class="say">We deliver the agreed security services and communicate clearly about our responsibilities.</span></div>
+            <div class="tone-row"><span class="avoid">“We respond instantly.”</span><span class="say">Response arrangements and service levels are defined transparently for each service.</span></div>
+            <div class="tone-row"><span class="avoid">“We use the latest technology.”</span><span class="say">We select suitable technology based on the client’s needs and the solution’s capabilities.</span></div>
+          </div>
+        </div>
+        <div style="margin-top:79px" data-reveal>
+          <div class="eyebrow">Brand story</div>
+          <h3 style="font-size:clamp(27px,4vw,43px);line-height:1;letter-spacing:-.05em;margin:15px 0 0">From local concern to trusted protection.</h3>
+          <div class="storyline">
+            <div class="story-step"><span>The challenge</span><p>Residents and businesses need dependable protection and better ways to communicate concerns.</p></div>
+            <div class="story-step"><span>The insight</span><p>Local knowledge is valuable, but it needs professional systems and capable resources.</p></div>
+            <div class="story-step"><span>The response</span><p>Bring people, appropriate technology and coordinated security arrangements together.</p></div>
+            <div class="story-step"><span>The ambition</span><p>Build trust through service quality, discipline, responsible innovation and accountability.</p></div>
+          </div>
+        </div>
+        <div class="quote-overlay" style="background:#f3f3f0;color:#14171b;margin:78px calc((var(--max) - 100vw)/2) 0;padding:67px max(26px,calc((100vw - var(--max))/2));" data-reveal>
+          <div class="quote-row"><h2 style="font-size:clamp(31px,4.3vw,58px)">The name carries<br>a shared meaning.</h2><blockquote>“Siyavikela” is presented in the supplied brand proposal as “we protect”—a collective commitment, not a guarantee of safety.<span class="attribution">Use the meaning with care; never imply that the company replaces SAPS or lawful authorities.</span></blockquote></div>
+        </div>
+        <div data-reveal style="margin-top:68px">
+          <div class="eyebrow">Tagline direction</div>
+          <div class="tagline-options">
+            <article class="tagline recommended"><b>Corporate promise · recommended</b><h3>Professional Protection.<br>Transparent Service.<br>Community Accountability.</h3><p>For formal proposals, profiles and business communication.</p></article>
+            <article class="tagline"><b>Community-facing</b><h3>Protecting our homes.<br>Strengthening our community.</h3><p>For local awareness, residential engagement and community meetings.</p></article>
+            <article class="tagline"><b>Future brand territory</b><h3>Protection<br>that connects.</h3><p>For an integrated security brand spanning people, operations and technology.</p></article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section light" id="identity">
+      <div class="wrap">
+        <div class="section-top" data-reveal>
+          <div><div class="section-number">PHASE 04</div><div class="eyebrow">Corporate identity / CI</div><h2 class="section-heading">Make the identity <em>work everywhere.</em></h2></div>
+          <p class="lede">Refine and systemise the supplied shield-and-eye logo rather than discarding its recognition. The identity must work on a vehicle, a uniform patch, a proposal and a mobile screen.</p>
+        </div>
+        <div class="ci-intro" data-reveal>
+          <div class="logo-board"><img src="assets/logo-original.webp" alt="Supplied Siyavikela Security Services logo on its original dark ground"></div>
+          <div class="ci-explainer"><div class="eyebrow">The supplied master artwork</div><h3>Vigilance in service of protection.</h3><p>The shield represents protection. The eye suggests vigilance and awareness. The red focal point signals alertness. Silver and white convey clarity, precision and professionalism. Keep these meanings connected to demonstrable service standards.</p><p class="light-note">The provided artwork is a raster logo with a dark square background. Before production, prepare vector artwork and validate embroidery, vehicle decal, print and small-screen versions.</p></div>
+        </div>
+        <div class="meaning-grid" data-reveal>
+          <div class="meaning"><b>01 / Shield</b><h4>Protection</h4><p>The primary symbol for uniforms, vehicles, signage and official materials.</p></div>
+          <div class="meaning"><b>02 / Eye</b><h4>Vigilance</h4><p>A visual cue for awareness and the potential connection between physical and electronic security.</p></div>
+          <div class="meaning"><b>03 / Red centre</b><h4>Alertness</h4><p>A selective accent; use sparingly so it remains meaningful rather than becoming visual noise.</p></div>
+        </div>
+        <div class="ci-rules" data-reveal>
+          <div class="rule-box"><h3>Required master versions</h3><ul><li>Primary full-colour lock-up and white/reversed version.</li><li>Single-colour version for embroidery and simplified print.</li><li>Shield-only symbol, horizontal lock-up and compact digital icon.</li><li>Production-ready vector artwork and small-size legibility test.</li></ul></div>
+          <div class="rule-box"><h3>Clear-space, size &amp; misuse rules</h3><ul><li>Provisional clear space: at least ¼ of the shield height on every side; lock-up gap equal to one eye-ring width.</li><li>Minimum starting size: shield 24 px digital / 12 mm print; full lock-up 160 px / 38 mm—test at final output.</li><li>Do not stretch, rotate, recolour, add effects or rebuild the supplied eye.</li><li>Use only on approved high-contrast backgrounds; never redraw from a screenshot.</li></ul></div>
+        </div>
+        <div data-reveal style="margin-top:65px">
+          <div class="eyebrow">Proposed working colour values</div>
+          <h3 style="font-size:30px;letter-spacing:-.04em;margin:15px 0 0">A restrained security palette.</h3>
+          <p class="small" style="margin-top:9px">Values below are proposed starting points from the supplied visual direction—not sampled official values. Calibrate against final vector artwork and test for print, contrast and accessibility.</p>
+          <div class="swatches">
+            <div class="swatch dark"><span>Midnight charcoal</span><strong>#171B23</strong><small>RGB 23 / 27 / 35 · CMYK ≈ 35 / 23 / 0 / 86</small></div>
+            <div class="swatch red"><span>Alert red</span><strong>#B51F35</strong><small>RGB 181 / 31 / 53 · CMYK ≈ 0 / 83 / 71 / 29</small></div>
+            <div class="swatch silver"><span>Security silver</span><strong>#C4C9D1</strong><small>RGB 196 / 201 / 209 · CMYK ≈ 6 / 4 / 0 / 18</small></div>
+            <div class="swatch white"><span>Clean white</span><strong>#FFFFFF</strong><small>RGB 255 / 255 / 255 · CMYK 0 / 0 / 0 / 0</small></div>
+          </div>
+          <p class="fineprint" style="margin-top:12px">Suggested balance: 60% charcoal · 25% silver/white · 10% clean white space · 5% alert red. CMYK values are approximate starting conversions; confirm using the printer’s output profile. Never use red as the only way to communicate meaning.</p>
+        </div>
+        <div class="type-specimen" data-reveal>
+          <div><div class="type-label">Primary / Headline</div><div class="type-details">Preferred: Manrope or Inter; fallback: Arial / Helvetica.<br>Weights 600–700 · 38–120 px web display scale.<br>Clear hierarchy for signs and mobile screens.</div></div>
+          <div class="type-sample">Clear. Capable.<br>Accountable.</div>
+        </div>
+        <div class="type-specimen" style="border-top:0;margin-top:0" data-reveal>
+          <div><div class="type-label">Secondary / Body &amp; operations</div><div class="type-details">Inter or Arial / Helvetica · regular 400.<br>16 px web minimum · 9 pt print minimum · 1.5 line height.<br>For service descriptions, forms and reports.</div></div>
+          <div><div class="type-sample serif">Confidence in every<br>conversation.</div><div class="type-details">Use a restrained serif accent only for editorial statements; never for small operational copy.</div></div>
+        </div>
+        <div style="margin-top:65px" data-reveal>
+          <div class="eyebrow">Graphic language</div>
+          <div class="graphic-language">
+            <article class="graphic-card"><div class="shield-graphic"></div><h3>Shield contours</h3><p>Use as frames, chapter markers or subtle section architecture—not as repetitive decoration.</p></article>
+            <article class="graphic-card"><div class="rings"></div><h3>Vigilance geometry</h3><p>Eye-inspired circles and rings can explain monitoring and service flows.</p></article>
+            <article class="graphic-card"><h3>Red signal line</h3><p>Use a disciplined red line to highlight decisions, alerts and calls to action. Keep layouts calm and structured.</p><div style="position:absolute;left:25px;bottom:31px;width:170px;height:2px;background:#b51f35"></div></article>
+          </div>
+        </div>
+        <div class="ci-rules" style="margin-top:52px" data-reveal>
+          <div class="rule-box"><h3>Photography &amp; art direction / do</h3><ul><li>Use authentic local context, natural light and respectful, candid community moments.</li><li>Show professionalism, cooperation and everyday reassurance—not danger as spectacle.</li><li>Obtain consent and confirm image usage rights for real people and locations.</li><li>Label concept renderings clearly; avoid implying unconfirmed capabilities.</li></ul></div>
+          <div class="rule-box"><h3>Avoid / always be truthful</h3><ul><li>Fear-based imagery, staged crime, unnecessary weapons or aggressive poses.</li><li>Generic overseas stock photos that do not reflect the people being served.</li><li>Unapproved police, SAPS, CPF, partner or regulator marks.</li><li>Photos that expose sensitive addresses, camera views, personal data or security details.</li></ul></div>
+          <div class="rule-box"><h3>Layout &amp; accessibility</h3><ul><li>Use a consistent 12-column grid, generous margins and clear chapter hierarchy.</li><li>Maintain strong text contrast; use red as an accent, never the only signal.</li><li>Body copy: 16 px minimum on web and 9 pt in print; avoid tiny all-caps text.</li><li>Keep captions and service limitations visible on every relevant mock-up.</li></ul></div>
+        </div>
+        <div class="uniform-feature" data-reveal>
+          <figure><img src="assets/uniform-branded.jpg" alt="Illustrative Siyavikela uniform concept with the supplied shield logo applied to a chest patch"><figcaption>Uniform concept · not an issued uniform</figcaption></figure>
+          <div class="uniform-copy"><div class="eyebrow">Application / uniform</div><h3>Recognisable.<br>Respectful.<br>Ready for service.</h3><p>Concept direction for a clean charcoal uniform with discreet red piping, a legible shield badge and professional identification. The aim is confidence—not a militaristic look.</p><ul><li>Embroidery sized for legibility at distance.</li><li>Role/name identification governed by policy.</li><li>High-visibility apparel used where appropriate.</li><li>Final design and wear must meet applicable requirements.</li></ul></div>
+        </div>
+        <div class="mockup-row" data-reveal>
+          <div class="mockup-copy"><div class="eyebrow">Application / field equipment</div><h3>Every tool should earn its place.</h3><p>Radio, phone, personal-safety device, flashlight, camera and access sensors are shown as an illustrative kit—not a claim that these assets are currently owned or deployed. Select equipment against a documented operating need, training, maintenance and privacy rules.</p><p class="fineprint">Drone imagery is conceptual. Any real flight requires independent aviation, privacy, site and operational permissions review.</p></div>
+          <figure><img src="assets/equipment-branded.jpg" alt="Illustrative security equipment kit with branded cap, handheld radio, mobile phone, panic button, flashlight and sensors"><figcaption>Equipment and cap mock-up · concept only</figcaption></figure>
+        </div>
+        <div class="paper-stage" data-reveal aria-label="Illustrative Siyavikela stationery and identification mock-up">
+          <div>
+            <div class="paper-mockup"><div class="paper-brand"><img src="assets/logo-symbol.png" alt=""><span><b>SIYAVIKELA</b><small>SECURITY SERVICES</small></span></div><div style="margin-top:20px;font-size:8px;color:#717983;letter-spacing:.06em">CLIENT SERVICE PROPOSAL / DOBSONVILLE</div><div class="paper-lines"><i></i><i></i><i class="short"></i><i></i><i class="red"></i><i class="short"></i></div><div class="paper-foot">PROFESSIONAL PROTECTION · TRANSPARENT SERVICE · COMMUNITY ACCOUNTABILITY</div></div>
+          </div>
+          <div><div class="id-card"><div class="id-head"><img src="assets/logo-symbol.png" alt=""><span><strong>SIYAVIKELA</strong><small>SECURITY SERVICES</small></span></div><div class="id-name">STAFF IDENTIFICATION</div><div class="id-role">Name · Role · Verified credential</div></div></div>
+          <div class="stationery-caption"><div class="eyebrow">Application / stationery</div><h3>Operational documents are part of the brand.</h3><p>Proposal, client agreement, incident form, service schedule, invoice, staff ID and email signature should all use one consistent information hierarchy. Never use placeholder or unverified contact details in production.</p></div>
+        </div>
+        <div style="margin-top:66px" data-reveal>
+          <div class="eyebrow">CI rollout priorities</div>
+          <div class="brand-checklist">
+            <div class="brand-check"><b>01 / CORE</b><p>Corporate profile, proposal and community information pack.</p></div>
+            <div class="brand-check"><b>02 / PEOPLE</b><p>Uniform, staff identification and approved vehicle graphics.</p></div>
+            <div class="brand-check"><b>03 / DIGITAL</b><p>Website, email signature and social-media templates.</p></div>
+            <div class="brand-check"><b>04 / OPERATIONS</b><p>Agreements, schedules, incident forms and service reports.</p></div>
+          </div>
+          <p class="light-note" style="margin-top:25px">One brand, every touchpoint: professionalism · vigilance · trust · accountability.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section soft" id="experience">
+      <div class="wrap">
+        <div class="section-top" data-reveal>
+          <div><div class="section-number">PHASE 05</div><div class="eyebrow">Brand &amp; service experience</div><h2 class="section-heading">Trust is a <em>service behaviour.</em></h2></div>
+          <p class="lede">A strong visual identity cannot compensate for unclear subscriptions, unanswered calls or poorly documented incidents. Every public promise must be backed by a real process.</p>
+        </div>
+        <div class="experience-grid" data-reveal>
+          <article class="journey"><div class="eyebrow">Resident experience</div><h3>From concern to informed participation.</h3><div class="journey-steps">
+            <div class="journey-step"><b>01</b><p><strong>Listen</strong><br>Gather priorities through respectful engagement.</p></div><div class="journey-step"><b>02</b><p><strong>Assess</strong><br>Understand risk, need, affordability and scope.</p></div><div class="journey-step"><b>03</b><p><strong>Explain</strong><br>Set out price, limits and responsibilities.</p></div><div class="journey-step"><b>04</b><p><strong>Enrol</strong><br>Obtain informed agreement and document terms.</p></div><div class="journey-step"><b>05</b><p><strong>Deliver</strong><br>Provide the contracted service with authorised people.</p></div><div class="journey-step"><b>06</b><p><strong>Review</strong><br>Share updates, gather feedback and improve.</p></div>
+          </div></article>
+          <article class="journey"><div class="eyebrow">Business client experience</div><h3>One repeatable, documented process.</h3><div class="journey-steps">
+            <div class="journey-step"><b>01</b><p><strong>Discovery</strong><br>Understand site, operating environment and risk.</p></div><div class="journey-step"><b>02</b><p><strong>Assessment</strong><br>Define requirements, constraints and options.</p></div><div class="journey-step"><b>03</b><p><strong>Proposal</strong><br>Specify service, cost, exclusions and standards.</p></div><div class="journey-step"><b>04</b><p><strong>Agreement</strong><br>Confirm service levels, reporting and escalation.</p></div><div class="journey-step"><b>05</b><p><strong>Implementation</strong><br>Set up the agreed service and communication.</p></div><div class="journey-step"><b>06</b><p><strong>Review</strong><br>Evaluate performance, risk and client feedback.</p></div>
+          </div></article>
+        </div>
+        <div style="margin-top:70px" data-reveal>
+          <div class="eyebrow">Incident communication</div><h3 style="font-size:clamp(27px,4vw,42px);letter-spacing:-.05em;line-height:1;margin:14px 0 0">Clear communication is part of protection.</h3>
+          <div class="incident-flow">
+            <div class="incident-step"><span>01</span><b>Incident reported</b></div><div class="incident-step"><span>02</span><b>Record &amp; assess</b></div><div class="incident-step"><span>03</span><b>Escalate appropriately</b></div><div class="incident-step"><span>04</span><b>Coordinate authorised response</b></div><div class="incident-step"><span>05</span><b>Update client as agreed</b></div><div class="incident-step"><span>06</span><b>Document &amp; review</b></div>
+          </div>
+          <p class="fineprint" style="margin-top:16px">Coverage hours, channels, staffing, escalation and response commitments must be defined before services are offered. For emergencies, contact the appropriate emergency service. Siyavikela must not present itself as a replacement for SAPS or emergency medical services.</p>
+        </div>
+        <div class="experience-image" data-reveal>
+          <figure><img src="assets/soweto-business.jpg" alt="Concept image of a Dobsonville small business owner speaking with a security representative"><figcaption>Commercial relationship concept · illustrative image</figcaption></figure>
+          <div class="image-copy"><div class="eyebrow">Community &amp; commercial relationships</div><h3>Good security respects its partners.</h3><p>Explore appropriate cooperation with residents, local businesses, SAPS, CPF/community safety structures, other security providers and qualified technology suppliers. PJ, Forte and GK were identified as possible school contacts in the supplied proposal.</p><ul><li>Agree roles and escalation boundaries with each partner.</li><li>School engagement requires management agreement and safeguarding.</li><li>Never market searches involving learners as routine standalone services.</li><li>Describe proposed partnerships as proposed until an agreement exists.</li></ul></div>
+        </div>
+        <div class="section-top" style="margin-top:75px" data-reveal><div><div class="eyebrow">Digital experience</div><h3 style="font-size:34px;line-height:1;letter-spacing:-.05em;margin:15px 0">A website should earn confidence.</h3></div><p class="small">Recommended navigation: Home · About · Security Services · Residential · Business · Technology · Community Safety · Contact. Explain what is available now, what is proposed and how to enquire.</p></div>
+        <div data-reveal style="margin-top:34px"><div class="eyebrow">Service transparency</div><h3 style="font-size:25px;line-height:1.08;letter-spacing:-.04em;margin:13px 0 0">Every service page or brochure should answer six questions.</h3><div class="value-table"><div class="value-cell"><span>01–02 / Scope</span><h3>What is the service?</h3><p>Who is it intended for?</p></div><div class="value-cell"><span>03–04 / Inclusions</span><h3>What is included?</h3><p>What is excluded or dependent on a third party?</p></div><div class="value-cell"><span>05 / Price</span><h3>What does it cost?</h3><p>What additional installation, supplier or ongoing charges may apply?</p></div><div class="value-cell"><span>06 / Assistance</span><h3>What happens when the client needs help?</h3><p>State channel, hours, escalation and response arrangements.</p></div></div></div>
+        <div class="metrics-grid" data-reveal>
+          <div class="metric-card"><span>Participation</span><strong>Active clients</strong><small>Track interest, enrolments, cancellations and renewals.</small></div>
+          <div class="metric-card"><span>Service delivery</span><strong>Schedule adherence</strong><small>Measure agreed service completion and documentation.</small></div>
+          <div class="metric-card"><span>Client experience</span><strong>Feedback</strong><small>Review satisfaction, complaints, resolution and referrals.</small></div>
+          <div class="metric-card"><span>Operational readiness</span><strong>Uptime &amp; compliance</strong><small>Track equipment support and required registrations/training.</small></div>
+        </div>
+        <p class="fineprint" style="margin-top:14px">Set targets only after scope, resources and service levels are defined. Incident counts alone are not a simple success measure: reporting may increase when trust in the reporting process improves.</p>
+      </div>
+    </section>
+
+    <section class="business-model" id="growth">
+      <div class="wrap">
+        <div class="section-top" data-reveal>
+          <div><div class="section-number">PHASE 06</div><div class="eyebrow">Business development</div><h2 class="section-heading">Build a business that can <em>keep its promise.</em></h2></div>
+          <p class="lede">Validate demand before committing to a larger operating structure. Establish what residents need, what Siyavikela can lawfully deliver and what participation is required to cover the real cost.</p>
+        </div>
+        <div data-reveal>
+          <div class="eyebrow">Illustrative gross monthly subscription revenue</div>
+          <div class="revenue-grid">
+            <div class="revenue-card"><span>100 households × R200</span><strong>R20,000</strong><small>Illustrative monthly revenue</small></div>
+            <div class="revenue-card"><span>150 households × R300</span><strong>R45,000</strong><small>Illustrative monthly revenue</small></div>
+            <div class="revenue-card"><span>190 households × R300</span><strong>R57,000</strong><small>Illustrative monthly revenue</small></div>
+            <div class="revenue-card"><span>190 households × R500</span><strong>R95,000</strong><small>Illustrative monthly revenue</small></div>
+          </div>
+          <p class="economics-note"><strong>Not profit forecasts or approved prices.</strong> Scenarios exclude staffing, equipment, vehicles, fuel, maintenance, insurance, technology, compliance, administration, taxes and bad debts. Before pricing is final, obtain supplier quotations, conduct a household survey, model the cost of delivery and define the service scope.</p>
+        </div>
+        <div class="purpose-cards" data-reveal style="margin-top:60px">
+          <article class="purpose-card"><span>Revenue stream 01</span><h3>Residential subscriptions</h3><p>Monthly fees for clearly defined community and residential services, with optional technology separated where appropriate.</p></article>
+          <article class="purpose-card"><span>Revenue stream 02</span><h3>Commercial security</h3><p>Separately scoped services for businesses, premises and commercial clients.</p></article>
+          <article class="purpose-card"><span>Revenue stream 03</span><h3>Technology &amp; tracking</h3><p>Potential installation, support or tracking services only through feasible, qualified suppliers and agreed arrangements.</p></article>
+        </div>
+        <div class="section-top" style="margin-top:82px" data-reveal><div><div class="eyebrow">Partnership &amp; technology</div><h3 style="font-size:34px;line-height:1;letter-spacing:-.05em;margin:15px 0">Build an ecosystem that strengthens delivery.</h3></div><p class="small">Evaluate partners for service fit, cost, support, privacy, governance and reliability—not simply for name recognition.</p></div>
+        <div class="position-grid" data-reveal>
+          <article class="position-card"><span>01 / TECHNOLOGY</span><h3>Qualified suppliers</h3><p>Compare capability, total cost, power/network needs, installation, maintenance, warranties, privacy, support and operational integration.</p></article>
+          <article class="position-card"><span>02 / SAFETY STRUCTURES</span><h3>Appropriate coordination</h3><p>Explore lawful cooperation with SAPS, CPF and other relevant safety structures.</p></article>
+          <article class="position-card"><span>03 / INSTITUTIONS</span><h3>Agreed engagement</h3><p>Work with school management and local organisations on mutually understood safety initiatives.</p></article>
+          <article class="position-card"><span>04 / SECURITY PARTNERS</span><h3>Complementary capability</h3><p>Consider specialist support, referrals or services under clear commercial agreements.</p></article>
+        </div>
+        <p class="fineprint" style="margin-top:16px">The proposal mentions possible engagement with Memeza Community Safety. Treat this as proposed until a formal agreement exists. No partnership, contract, technology platform or operational capability is implied by this strategy concept.</p>
+        <p class="economics-note"><strong>Institutional pathway:</strong> complete compliance → define service scope → prepare the corporate profile and supporting documents → identify relevant procurement or partnership opportunities → submit accurate applications → deliver and document any awarded work. An introductory meeting, vendor registration, formal partnership and awarded contract are different milestones.</p>
+        <div class="versus" data-reveal style="margin-top:55px">
+          <div><h3>Pricing should account for</h3><ul><li>Labour, coverage hours and shift structure.</li><li>Vehicles, fuel, maintenance and equipment.</li><li>Insurance, required compliance and training.</li><li>Supplier charges, technology support and service.</li><li>Administration, customer support and sustainable margin.</li></ul></div>
+          <div class="good"><h3>Customer acquisition should validate</h3><ul><li>Household survey and service priorities.</li><li>Verified target area and willingness to participate.</li><li>Competitor offer, affordability and cost-to-serve.</li><li>Clear proposal, informed onboarding and transparent terms.</li><li>Feedback and service review before expansion.</li></ul></div>
+        </div>
+        <p class="economics-note"><strong>Early marketing channels:</strong> community meetings, printed proposals, a professional website, local business introductions, community-approved groups and referral programmes with clear terms. Use verified case studies only after launch; never disclose security-sensitive information.</p>
+        <div class="priority-grid" data-reveal style="margin-top:60px">
+          <article class="priority"><b>READINESS GATE 01</b><h3>Company &amp; industry compliance</h3><p>Verify company and personnel registrations, training, insurance, employment obligations, contracts and authorisations for each service. Firearm licensing applies only if armed services are contemplated. Confirm requirements with PSiRA and qualified advisers.</p></article>
+          <article class="priority"><b>READINESS GATE 02</b><h3>Privacy &amp; technology</h3><p>Assess personal-information obligations for CCTV, tracking and monitoring. Establish access, retention, security, consent and supplier responsibilities before implementation.</p></article>
+          <article class="priority"><b>READINESS GATE 03</b><h3>Operational feasibility</h3><p>Define service area, staffing, equipment, incident procedures, escalation and real cost. CIPC registration alone does not authorise every regulated private security service.</p></article>
+        </div>
+        <p class="fineprint" style="margin-top:18px">The supplied proposal states that CIPC registration occurred on 30 September 2026 and notes outstanding PSiRA and other operational requirements. Verify current official status and all details before external publication or launch. This presentation is strategic guidance, not legal advice.</p>
+      </div>
+    </section>
+
+    <section class="section soft">
+      <div class="wrap">
+        <div class="section-top" data-reveal>
+          <div><div class="eyebrow">Responsible growth model</div><h2 class="section-heading">Earn the right to <em>expand.</em></h2></div>
+          <p class="lede">The opportunity is to build a repeatable system in which service quality creates trust, trust supports retention and referrals, and sustainable revenue funds better people, processes and technology.</p>
+        </div>
+        <div class="growth-grid" data-reveal>
+          <article class="growth-step"><span>01 / VALIDATE</span><h3>Dobsonville</h3><p>Confirm demand, area, affordability, costs, compliance and service feasibility.</p></article>
+          <article class="growth-step"><span>02 / ESTABLISH</span><h3>Operational delivery</h3><p>Launch only authorised services the team can deliver reliably and sustainably.</p></article>
+          <article class="growth-step"><span>03 / STRENGTHEN</span><h3>Reputation &amp; systems</h3><p>Build service standards, financial management, reporting and client relationships.</p></article>
+          <article class="growth-step"><span>04 / EXPAND</span><h3>New services &amp; areas</h3><p>Add only when evidence, capacity and the required compliance support it.</p></article>
+        </div>
+        <div class="eyebrow" style="margin-top:72px" data-reveal>First 90 days · proposed planning windows</div>
+        <div class="roadmap" data-reveal>
+          <article class="roadmap-card"><div class="days">DAYS 01–30</div><h3>Foundation &amp; verification</h3><ul><li>Verify compliance and readiness.</li><li>Define proposed service scope.</li><li>Gather supplier quotations and costs.</li><li>Prepare household survey.</li><li>Confirm roles and accountability.</li></ul></article>
+          <article class="roadmap-card"><div class="days">DAYS 31–60</div><h3>Validation &amp; system design</h3><ul><li>Conduct community research.</li><li>Review demand and affordability.</li><li>Refine budget and service pricing.</li><li>Develop CI and business documents.</li><li>Document response procedures.</li></ul></article>
+          <article class="roadmap-card"><div class="days">DAYS 61–90</div><h3>Decision &amp; preparation</h3><ul><li>Assess feasibility against evidence.</li><li>Confirm agreements and resources.</li><li>Finalise authorised service scope.</li><li>Prepare customer onboarding.</li><li>Decide whether a compliant pilot is viable.</li></ul></article>
+        </div>
+        <p class="fineprint" style="margin-top:18px">These are planning windows, not guaranteed launch dates. If compliance, supplier agreements or operational requirements remain outstanding, move the launch accordingly.</p>
+        <div class="eyebrow" style="margin-top:76px" data-reveal>What success looks like</div>
+        <div class="position-grid" data-reveal>
+          <article class="position-card"><span>01 / READY</span><h3>Operationally prepared</h3><p>A compliant business with clear scope, responsibilities and service procedures.</p></article>
+          <article class="position-card"><span>02 / VIABLE</span><h3>Realistic economics</h3><p>Pricing reflects costs, capacity and customer value—not guesswork.</p></article>
+          <article class="position-card"><span>03 / TRUSTED</span><h3>Service people can assess</h3><p>Documented delivery, clear communication, fair treatment and appropriate reporting.</p></article>
+          <article class="position-card"><span>04 / SCALABLE</span><h3>Evidence before expansion</h3><p>Growth follows demand, performance, financial sustainability and readiness.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="final-hero" aria-label="Siyavikela strategic conclusion">
+      <div class="final-content">
+        <div class="hero-kicker"><span></span> The strategic conclusion</div>
+        <h2>Build trust<br><span>before scale.</span></h2>
+        <p>Siyavikela has the foundations of a compelling brand: a meaningful name, a clear visual direction, a local starting point and an ambition to connect protection with community.</p>
+        <p><strong>Establish compliance before launch. Prove service quality before making bigger promises.</strong></p>
+        <a class="button red" href="brand-strategy.pdf" download>Download the complete strategy PDF <span class="arrow">↗</span></a>
+        <div class="final-note">SIYAVIKELA SECURITY SERVICES · PROTECTION THAT CONNECTS · DOBSONVILLE · SOWETO</div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-top">
+        <div>
+          <div class="footer-brand"><img src="assets/logo-symbol.png" alt=""><span><b>SIYAVIKELA</b><small>SECURITY SERVICES</small></span></div>
+          <h2 class="footer-title">Professional protection.<br>Rooted in community.</h2>
+          <p class="footer-copy">Brand development and strategic positioning concept prepared from the supplied Siyavikela community proposal. This website is a presentation—not a live service portal.</p>
+        </div>
+        <div class="footer-links" aria-label="Footer navigation">
+          <a href="#foundation">Foundation</a><a href="#positioning">Positioning</a><a href="#brand">Brand strategy</a><a href="#identity">Corporate identity</a><a href="#experience">Service experience</a><a href="#growth">Business development</a><a href="#top">Back to top ↑</a><a href="brand-strategy.pdf" download>Download PDF ↗</a>
+        </div>
+      </div>
+      <div class="footer-bottom"><span>© Siyavikela Security Services · Strategy concept · 2026</span><span>All rendered uniforms, vehicles, equipment and neighbourhood scenes are illustrative concept visuals. No current service, equipment, partnership or credential is implied.</span></div>
+    </div>
+  </footer>
+
+  <script>
+    (function(){
+      const header=document.getElementById('site-header');
+      const progress=document.getElementById('progress-line');
+      const menu=document.getElementById('menu-toggle');
+      const nav=document.getElementById('site-nav');
+      const update=()=>{
+        const max=document.documentElement.scrollHeight-window.innerHeight;
+        const pct=max>0?(window.scrollY/max)*100:0;
+        progress.style.width=pct+'%';
+        header.classList.toggle('scrolled',window.scrollY>30);
+      };
+      window.addEventListener('scroll',update,{passive:true});update();
+      menu.addEventListener('click',()=>{const open=nav.classList.toggle('open');menu.setAttribute('aria-expanded',String(open));menu.setAttribute('aria-label',open?'Close menu':'Open menu');menu.textContent=open?'×':'☰';});
+      nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');menu.setAttribute('aria-expanded','false');menu.setAttribute('aria-label','Open menu');menu.textContent='☰';}));
+      const items=document.querySelectorAll('[data-reveal]');
+      if('IntersectionObserver' in window){
+        const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('seen');obs.unobserve(e.target);}}),{threshold:.08,rootMargin:'0px 0px -20px 0px'});
+        items.forEach(el=>obs.observe(el));
+      }else{items.forEach(el=>el.classList.add('seen'));}
+    })();
+  </script>
+</body>
+</html>

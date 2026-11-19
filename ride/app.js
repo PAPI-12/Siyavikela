@@ -1,5 +1,8 @@
 import "@fontsource-variable/inter";
+import "@fontsource/barlow-condensed/latin-800.css";
 import "./style.css";
+import "./experience.css";
+import sanbsLogo from "./sanbs-logo.png";
 import {
   key,
   seed,
@@ -65,6 +68,7 @@ let state = load(),
   view = "home",
   driver = "sipho",
   filters = {},
+  workSelection = null,
   zoom = 1,
   menu = false,
   modal = null,
@@ -81,6 +85,10 @@ let roomId = roomUrl.searchParams.get("room"),
   pending = false,
   polling = false,
   pollTimer,
+  pushEnabled = false,
+  pushSource,
+  pushActive = false,
+  pendingRevision = -1,
   driverPinned = false;
 const isShared = () => roomId !== null;
 const roomPrefs = () => {
@@ -123,17 +131,57 @@ function acceptRoom(record) {
   roomRevision = record.revision;
   roomExpiry = record.expiresAt;
   state = record.state;
+  if (typeof record.push === "boolean") {
+    pushEnabled = record.push;
+    if (!pushEnabled) closePush();
+  }
   roomStatus = "live";
   roomError = "";
   followDriver();
   return changed;
+}
+function closePush() {
+  pushSource?.close();
+  pushSource = undefined;
+  pushActive = false;
+  pendingRevision = -1;
+}
+function connectPush() {
+  if (
+    !pushEnabled ||
+    pushSource ||
+    !isShared() ||
+    document.hidden ||
+    typeof EventSource !== "function"
+  )
+    return;
+  const target = roomId;
+  const source = new EventSource(
+    `/api/rooms?room=${encodeURIComponent(target)}&watch=1`,
+  );
+  pushSource = source;
+  source.addEventListener("revision", (e) => {
+    if (source !== pushSource || target !== roomId) return;
+    pushActive = true;
+    pendingRevision = Math.max(pendingRevision, Number(e.data) || 0);
+    if (pendingRevision > (roomRevision ?? -1)) schedulePoll(true);
+    else schedulePoll();
+  });
+  source.onerror = () => {
+    if (source !== pushSource) return;
+    pushActive = false;
+    // Native EventSource reconnects after intentional stream rotation. If a
+    // proxy blocks streams entirely, stay on polling until the next refresh.
+    if (source.readyState === EventSource.CLOSED) pushEnabled = false;
+    schedulePoll(true);
+  };
 }
 function schedulePoll(immediate = false) {
   clearTimeout(pollTimer);
   if (isShared() && roomStatus !== "unavailable")
     pollTimer = setTimeout(
       pollRoom,
-      immediate ? 0 : document.hidden ? 9000 : 2000,
+      immediate ? 0 : document.hidden ? 9000 : pushActive ? 15000 : 2000,
     );
 }
 async function pollRoom() {
@@ -150,6 +198,7 @@ async function pollRoom() {
     const record = await roomRequest({ room: target });
     if (roomId !== target) return;
     const changed = acceptRoom(record);
+    connectPush();
     if (changed || prev !== roomStatus)
       render({ preserve: true, refresh: true });
     if (first && !roomPrefs()) open("choose-role");
@@ -172,6 +221,15 @@ async function pollRoom() {
   } finally {
     polling = false;
     schedulePoll();
+    // A notification can beat an eventually consistent GET. Retry briefly without spinning.
+    if (
+      pushActive &&
+      pendingRevision > (roomRevision ?? -1) &&
+      roomStatus === "live"
+    ) {
+      clearTimeout(pollTimer);
+      pollTimer = setTimeout(pollRoom, 300);
+    }
   }
 }
 function invitation() {
@@ -185,6 +243,8 @@ function invitation() {
 }
 function exitRoom() {
   clearTimeout(pollTimer);
+  closePush();
+  pushEnabled = false;
   roomId = null;
   roomRevision = null;
   roomStatus = "solo";
@@ -213,6 +273,7 @@ async function startRoom() {
     closeModal(false);
     render();
     open("invite");
+    connectPush();
     schedulePoll();
     notify("Shared session created. Send this link to your testers.");
   } catch (err) {
@@ -233,7 +294,10 @@ async function copyInvite() {
   }
 }
 document.addEventListener("visibilitychange", () => {
-  if (!document.hidden) schedulePoll(true);
+  if (document.hidden) {
+    closePush();
+    schedulePoll();
+  } else schedulePoll(true);
 });
 window.addEventListener("online", () => {
   if (isShared()) {
@@ -351,6 +415,8 @@ async function dispatch(action, { keep = false, onSuccess } = {}) {
     return false;
   } finally {
     pending = false;
+    if (pushActive && pendingRevision > (roomRevision ?? -1))
+      schedulePoll(true);
   }
 }
 window.addEventListener("storage", (e) => {
@@ -361,7 +427,8 @@ window.addEventListener("storage", (e) => {
   }
 });
 const brand = () =>
-  `<button type="button" class="brand" aria-label="SANBS RIDE home" data-action="nav" data-view="home"><span class="brand-mark"><svg width="23" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2.5s-6.4 7.1-6.4 11.6a6.4 6.4 0 1 0 12.8 0C18.4 9.6 12 2.5 12 2.5Z" stroke="currentColor" stroke-width="1.65" stroke-linejoin="round"/><path d="M9.3 14.5h5.4m-2.7-2.7v5.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span><span><strong>SANBS <em>RIDE</em></strong><small>DONOR TRANSPORT</small></span></button>`;
+  `<button type="button" class="brand" aria-label="SANBS RIDE home" data-action="nav" data-view="home"><img class="sanbs-logo" src="${sanbsLogo}" width="48" height="48" alt=""><span class="brand-product"><strong>RIDE</strong><small>DONOR TRANSPORT</small></span></button>`;
+
 function demoMenu() {
   return `<div class="demo-dropdown" ${menu ? "" : "hidden"}><div class="dropdown-label">PRESENTATION · SWITCH ROLE</div>${Object.entries(
     roleNames,
@@ -394,7 +461,8 @@ function sessionBar() {
   return `<div class="session-bar ${roomStatus}"><div><span class="session-label" role="status"><span></span>${captions[roomStatus]}</span><span class="session-role">${roleNames[role]}${role === "driver" ? ` · ${drivers[driver].name}` : ""}</span></div><button class="session-share" data-action="${roomRevision === null ? "retry-room" : "invite"}">${i(roomRevision === null ? "rotate-ccw" : "users-round", 16)} ${roomRevision === null ? "Retry" : "Invite"}</button></div>`;
 }
 function render({ preserve = false, refresh = false } = {}) {
-  const current = document.activeElement,
+  const itineraryOpen = !!root.querySelector(".driver-itinerary[open]"),
+    current = document.activeElement,
     input =
       preserve && current?.matches('[data-filter="query"]')
         ? { start: current.selectionStart, end: current.selectionEnd }
@@ -403,7 +471,11 @@ function render({ preserve = false, refresh = false } = {}) {
   document.body.dataset.role = role;
   document.title = `SANBS RIDE · ${roleNames[role]}`;
   root.innerHTML = `<div class="app-shell"><a class="skip-link" href="#main">Skip to content</a><header class="topbar"><div class="topbar-inner">${brand()}${mobile() ? `<nav class="top-nav" aria-label="${roleNames[role]} navigation">${navLinks(nav, view)}</nav>` : `<span class="header-workspace">${roleNames[role]}</span>`}<div class="top-tools"><div class="demo"><button class="demo-trigger" data-action="menu" aria-expanded="${menu}">${i("layers-2", 16)}<span>Demo mode</span>${i("chevron-down", 14)}</button>${demoMenu()}</div><span class="tool-divider"></span><button class="top-bell icon-btn" aria-label="Activity and notifications" data-action="activity">${i("bell", 19)}${state.bookings.some((x) => x.history.length > (x.id === "SR-1042" ? 2 : 0) && (role !== "donor" || x.donor === "thabo")) ? '<span class="bell-dot"></span>' : ""}</button><span class="avatar header-avatar" aria-label="${roleNames[role]} profile">${role === "donor" ? "TM" : role === "driver" ? initials(drivers[driver].name) : role === "staff" ? "SS" : "TO"}</span></div></div></header>${sessionBar()}
-  ${isShared() && roomRevision === null ? `<main class="consumer-content session-entry" id="main"><section class="panel">${empty(roomStatus === "connecting" ? "Joining your team…" : "Couldn’t open the shared session", esc(roomError || "Loading the shared transport records."), "users-round", button("Return to solo demo", "exit-room", "arrow-left", "secondary"))}</section></main>` : mobile() ? `<main id="main" class="mobile-main">${role === "donor" ? donorView(state, view, zoom) : driverView(state, view, driver, zoom)}</main><nav class="bottom-nav" aria-label="${roleNames[role]} navigation">${navLinks(nav, view)}</nav><footer class="app-footer"><div><span><strong>SANBS RIDE</strong><span class="footer-dot"></span> Transport coordination prototype</span><span>${i("info", 14)} Simulated data · No live tracking</span></div></footer>` : workplace(state, role, view, filters)}</div>`;
+  ${isShared() && roomRevision === null ? `<main class="consumer-content session-entry" id="main"><section class="panel">${empty(roomStatus === "connecting" ? "Joining your team…" : "Couldn’t open the shared session", esc(roomError || "Loading the shared transport records."), "users-round", button("Return to solo demo", "exit-room", "arrow-left", "secondary"))}</section></main>` : mobile() ? `<main id="main" class="mobile-main">${role === "donor" ? donorView(state, view, zoom) : driverView(state, view, driver, zoom)}</main><nav class="bottom-nav" aria-label="${roleNames[role]} navigation">${navLinks(nav, view)}</nav><footer class="app-footer"><div><span><strong>SANBS RIDE</strong><span class="footer-dot"></span> Transport coordination prototype</span><span>${i("info", 14)} Simulated data · No live tracking</span></div></footer>` : workplace(state, role, view, filters, workSelection)}</div>`;
+  if (itineraryOpen) {
+    const itinerary = root.querySelector(".driver-itinerary");
+    if (itinerary) itinerary.open = true;
+  }
   if (input) {
     const el = root.querySelector('[data-filter="query"]');
     el?.focus({ preventScroll: true });
@@ -420,6 +492,7 @@ function render({ preserve = false, refresh = false } = {}) {
 function move(next) {
   view = next;
   filters = {};
+  workSelection = null;
   zoom = 1;
   menu = false;
   closeModal(false);
@@ -548,7 +621,7 @@ function modalContent() {
     return {
       title: "Choose your test role",
       label: "JOIN SHARED SESSION",
-      html: `<p>Each tester should choose a different role. Changes will normally appear on the other devices within a few seconds.</p><div class="help-options">${Object.entries(
+      html: `<p>Each tester should choose a different role. Updates appear automatically on the other devices.</p><div class="help-options">${Object.entries(
         roleNames,
       )
         .map(
@@ -677,7 +750,7 @@ function drawModal({ refresh = false } = {}) {
     });
   }
   dialog.className = `dialog ${content.drawer ? "drawer" : ""} ${modal.type === "booking" ? "wizard" : ""}`;
-  dialog.innerHTML = `<div class="modal-head"><div><span class="label">${esc(content.label)}</span><h2 id="dialog-title">${esc(content.title)}</h2></div><button type="button" class="icon-btn" data-action="close" aria-label="Close dialog">${i("x", 21)}</button></div><div class="modal-body"><p class="modal-feedback" role="status" hidden></p>${content.html}</div>`;
+  dialog.innerHTML = `<div class="modal-head"><div><span class="label">${esc(content.label)}${modal.type === "booking" && draft.step > 0 && draft.step < 5 ? ` <span class="wizard-count">/ STEP ${draft.step} OF 4</span>` : ""}</span><h2 id="dialog-title">${esc(content.title)}</h2></div><button type="button" class="icon-btn" data-action="close" aria-label="Close dialog">${i("x", 21)}</button></div><div class="modal-body"><p class="modal-feedback" role="status" hidden></p>${content.html}</div>`;
   dialog.scrollTop = refresh ? oldScroll : 0;
   if (fresh) dialog.showModal();
   else if (!refresh)
@@ -906,6 +979,22 @@ document.addEventListener("click", async (e) => {
       notify("Demo pickup location selected");
       break;
     }
+    case "inspect":
+      if (matchMedia("(min-width: 1020px)").matches) {
+        workSelection = { id, leg };
+        render();
+      } else open("detail", { ...props, leg: leg || "outbound" });
+      break;
+    case "work-assign":
+      workSelection = { id, leg };
+      await dispatch({
+        type: "assign",
+        id,
+        leg,
+        driver: el.dataset.driver,
+        actor: actor(),
+      });
+      break;
     case "detail":
       open("detail", { ...props, leg: leg || "outbound" });
       break;

@@ -3,3 +3,8 @@ dist/
 
 /SANBS-RIDE-preview.html
 /SANBS-RIDE-phone-walkthrough.pdf
+
+.env
+.env.*
+!.env.example
+.vercel/

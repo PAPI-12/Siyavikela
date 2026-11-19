@@ -16,7 +16,7 @@ Open `http://localhost:5173`. Run `npm test` for booking lifecycle and dispatch 
 ## Deploy from GitHub to Vercel
 
 1. Import the GitHub repository into Vercel with the **Vite** framework preset, or use the existing linked project. Push the branch to get a Vercel Preview deployment on its pull request. `vercel.json` builds the frontend in `dist/`; Vercel also deploys the `/api/rooms` serverless function.
-2. In the Vercel project, connect an **Upstash Redis** database from Storage/Marketplace and include the **Preview** environment. The function reads `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN` (or `KV_REST_API_URL` and `KV_REST_API_TOKEN`). Keep the token server-side; do not prefix it with `VITE_`. Redeploy the latest Preview after adding the integration. Add the Production environment only if you intend to run shared rooms there.
+2. In the Vercel project, connect an **Upstash Redis** database from Storage/Marketplace and include the **Preview** environment. The function reads `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN` (or `KV_REST_API_URL` and `KV_REST_API_TOKEN`). Keep the token server-side; do not prefix it with `VITE_`. For instant push updates, also add the same database’s native TLS connection URL as a server-only `REDIS_URL` (the function also recognises `KV_URL` and `UPSTASH_REDIS_URL`). Without a native URL, clients use the REST polling fallback. Redeploy the latest Preview after adding the integration. Add the Production environment only if you intend to run shared rooms there.
 3. Open the Vercel preview and use **Demo mode → Shared testing → Create shared session**. Send the generated invite link, including the room query parameter, to all four testers. Each opens the same link and chooses a different role. If the preview is protected, first use Vercel’s sharing controls to give those testers access, then confirm a tester can open the final invite in a private browser window.
 
 ### Rehearse locally on separate browsers
@@ -30,7 +30,7 @@ Create a shared session and open the same invite URL in four separate browser pr
 ## Suggested stakeholder walkthrough
 
 1. In **Donor → Home**, select **Request transport** and continue with the pre-filled Sandton appointment, pickup and return preference.
-2. Use **Demo mode → SANBS Staff** to open Thabo’s new record in **Site overview**. The booking is tagged **Donor self-booked**.
+2. Use **Demo mode → SANBS Staff** to open Thabo’s new record in **Arrivals worklist**. The booking is tagged **Donor self-booked**.
 3. In **Transport Operations → Dispatch queue**, assign the outbound trip to **Sipho Dlamini**.
 4. In **Driver**, the app automatically follows Thabo’s assigned driver unless the tester manually selects a different driver in **Demo mode**. Acknowledge the assignment, start navigation, mark arrival at pickup, confirm pickup, then mark arrival at the donation site.
 5. In **SANBS Staff → Return readiness**, open Thabo’s record, select **Confirm donor arrived**, then **Confirm donor ready for return**. Only the second action makes a return leg dispatchable.
@@ -41,9 +41,9 @@ To try a staff-assisted booking, search for **Nomsa Khumalo** in **SANBS Staff �
 
 ## Prototype boundaries
 
-- Solo mode uses `localStorage`. Shared mode stores one versioned record per invite in Redis and checks for changes every two seconds while the tab is visible. Simultaneous writes cannot silently overwrite each other; the second tester sees the latest state and can try again. Shared sessions expire 24 hours after creation.
+- Solo mode uses `localStorage`. Shared mode stores one versioned record per invite in Redis. With a native Redis connection, a server-sent event tells connected browsers when a new revision is saved. Browsers re-read the record on reconnect and fall back to a two-second check when streaming is unavailable. Simultaneous writes cannot silently overwrite each other; the second tester sees the latest state and can try again. Shared sessions expire 24 hours after creation.
 - Anyone with the invite can read the demo room and switch roles. Use only synthetic data and share the link only with testers. The server enforces which actions a selected role can take, but this is not account authentication or production access control. Pickup locations, map routes, driver movement, provider events, contact and notifications are simulated. There are no SANBS, payment, messaging or partner integrations.
-- The wordmark and drop icon are a prototype placeholder, not an official SANBS logo.
+- The SANBS logo is shown unchanged from the [Blood transfusion Genomics Consortium’s SANBS member profile](https://www.bgc.io/members/sanbs). The red in this prototype is sampled from that artwork. RIDE remains a stakeholder prototype, not an official SANBS product.
 - `ride/state.js` holds the state transitions and guardrails. The donor and driver views are in `ride/mobile.js`; staff and dispatch views are in `ride/operations.js`.
 
 ## Preserved Siyavikela presentation

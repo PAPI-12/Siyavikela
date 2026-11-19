@@ -1,4 +1,6 @@
 import { randomBytes } from "node:crypto";
+import { EventEmitter } from "node:events";
+import Redis from "ioredis";
 import {
   donors,
   drivers,
@@ -13,6 +15,7 @@ import {
 export const roomPattern = /^[A-Za-z0-9_-]{32}$/;
 const ttl = 24 * 60 * 60;
 const prefix = "sanbs-ride:room:v1:";
+const channel = (id) => `${prefix}${id}:events`;
 const conflict =
   "Someone updated this session. The latest records are shown; review them and try again.";
 const permissions = {
@@ -166,7 +169,42 @@ export function redisRooms(env) {
     if (payload.error) throw new Error("Room datastore command failed");
     return payload.result;
   }
+  const redisUrl = env.REDIS_URL || env.UPSTASH_REDIS_URL || env.KV_URL;
+  const watch = redisUrl
+    ? async (id, onChange, signal, onDisconnect) => {
+        if (signal.aborted) return;
+        const endpoint = new URL(redisUrl);
+        if (endpoint.hostname.endsWith(".upstash.io"))
+          endpoint.protocol = "rediss:";
+        const subscriber = new Redis(endpoint.href, {
+          lazyConnect: true,
+          connectTimeout: 3500,
+          retryStrategy: () => null,
+          maxRetriesPerRequest: 0,
+        });
+        const close = () => subscriber.disconnect();
+        const onMessage = (topic, revision) => {
+          if (topic === channel(id)) onChange(Number(revision));
+        };
+        const onError = () => close();
+        subscriber.on("message", onMessage);
+        subscriber.on("error", onError);
+        subscriber.once("end", () => {
+          if (!signal.aborted) onDisconnect();
+        });
+        signal.addEventListener("abort", close, { once: true });
+        try {
+          await subscriber.connect();
+          await subscriber.subscribe(channel(id));
+          return close;
+        } catch (err) {
+          close();
+          throw err;
+        }
+      }
+    : null;
   return {
+    watch,
     create: async (id, record) =>
       (await command(
         "SET",
@@ -180,19 +218,28 @@ export function redisRooms(env) {
       const value = await command("GET", prefix + id);
       return value ? JSON.parse(value) : null;
     },
-    write: async (id, revision, record) =>
-      (await command(
-        "EVAL",
-        compareAndSwap,
-        1,
-        prefix + id,
-        revision,
-        JSON.stringify(record),
-      )) === 1,
+    write: async (id, revision, record) => {
+      const committed =
+        (await command(
+          "EVAL",
+          compareAndSwap,
+          1,
+          prefix + id,
+          revision,
+          JSON.stringify(record),
+        )) === 1;
+      // Redis is authoritative; a lost Pub/Sub notification never undoes the booking.
+      if (committed && watch)
+        await command("PUBLISH", channel(id), record.revision).catch(() => {});
+      return committed;
+    },
   };
 }
+
 export function memoryRooms() {
   const cache = new Map();
+  const events = new EventEmitter();
+  events.setMaxListeners(0);
   const get = (id) => {
     const v = cache.get(id);
     if (v && Date.parse(v.expiresAt) > Date.now()) return structuredClone(v);
@@ -201,6 +248,13 @@ export function memoryRooms() {
   };
   return {
     get: async (id) => get(id),
+    watch: async (id, onChange, signal) => {
+      const off = () => events.off(id, onChange);
+      if (signal.aborted) return off;
+      events.on(id, onChange);
+      signal.addEventListener("abort", off, { once: true });
+      return off;
+    },
     create: async (id, record) => {
       if (get(id)) return false;
       cache.set(id, structuredClone(record));
@@ -209,6 +263,7 @@ export function memoryRooms() {
     write: async (id, revision, record) => {
       if (get(id)?.revision !== revision) return false;
       cache.set(id, structuredClone(record));
+      events.emit(id, record.revision);
       return true;
     },
   };
@@ -235,7 +290,7 @@ export function roomService(store) {
         };
         if (!(await store.create(record.room, record)))
           throw new Error("Room identifier collision");
-        return response(201, record);
+        return response(201, { ...record, push: Boolean(store.watch) });
       }
       const id = method === "GET" ? room : body?.room;
       if (!matches(roomPattern, id))
@@ -249,7 +304,8 @@ export function roomService(store) {
             "This session has expired or could not be found. Ask your organiser for a new link.",
           code: "ROOM_NOT_FOUND",
         });
-      if (method === "GET") return response(200, record);
+      if (method === "GET")
+        return response(200, { ...record, push: Boolean(store.watch) });
       if (body.operation !== "act" || !Number.isInteger(body.revision))
         invalid();
       if (body.revision !== record.revision)
@@ -270,7 +326,7 @@ export function roomService(store) {
       else delete next.bookingId;
       if (!(await store.write(id, record.revision, next)))
         return response(409, { error: conflict, latest: await store.get(id) });
-      return response(200, next);
+      return response(200, { ...next, push: Boolean(store.watch) });
     } catch (err) {
       if (err instanceof RoomError)
         return response(err.status, { error: err.message });
@@ -301,12 +357,70 @@ async function bodyFrom(req) {
   }
   return JSON.parse(Buffer.concat(chunks).toString());
 }
+// Each stream carries revision numbers only. Clients always re-read the persisted room.
+async function streamRoom(store, id, res) {
+  if (!store?.watch || !matches(roomPattern, id)) {
+    res.statusCode = 404;
+    res.end();
+    return;
+  }
+  const controller = new AbortController(),
+    signal = controller.signal;
+  const close = () => controller.abort();
+  let stop,
+    heartbeat,
+    latest = -1;
+  const deadline = setTimeout(close, 22000);
+  res.once("close", close);
+  const done = new Promise((resolve) =>
+    signal.addEventListener("abort", resolve, { once: true }),
+  );
+  const emit = (revision) => {
+    if (!Number.isInteger(revision) || revision <= latest) return;
+    latest = revision;
+    if (res.headersSent && !res.destroyed)
+      res.write(`event: revision\ndata: ${revision}\n\n`);
+  };
+  try {
+    if (!(await store.get(id))) {
+      res.statusCode = 404;
+      return;
+    }
+    stop = await store.watch(id, emit, signal, close);
+    const snapshot = await store.get(id);
+    if (!snapshot || signal.aborted) {
+      res.statusCode = 503;
+      return;
+    }
+    res.setHeader("Content-Type", "text/event-stream; charset=utf-8");
+    res.setHeader("X-Accel-Buffering", "no");
+    res.write(
+      `retry: 1250\nevent: revision\ndata: ${Math.max(latest, snapshot.revision)}\n\n`,
+    );
+    latest = Math.max(latest, snapshot.revision);
+    heartbeat = setInterval(() => {
+      if (!res.destroyed) res.write(": heartbeat\n\n");
+    }, 8000);
+    await done;
+  } catch {
+    if (!res.headersSent) res.statusCode = 503;
+  } finally {
+    clearTimeout(deadline);
+    clearInterval(heartbeat);
+    close();
+    stop?.();
+    if (!res.destroyed) res.end();
+  }
+}
 export function roomHttpHandler(store) {
   const service = roomService(store);
   return async (req, res) => {
     res.setHeader("Cache-Control", "private, no-store, max-age=0");
     res.setHeader("Content-Type", "application/json; charset=utf-8");
     res.setHeader("Referrer-Policy", "no-referrer");
+    const query = new URL(req.url, "http://localhost").searchParams;
+    if (req.method === "GET" && query.get("watch") === "1")
+      return streamRoom(store, query.get("room"), res);
     let result;
     try {
       if (
@@ -316,7 +430,7 @@ export function roomHttpHandler(store) {
         throw new RoomError(415, "Send session actions as JSON.");
       result = await service({
         method: req.method,
-        room: new URL(req.url, "http://localhost").searchParams.get("room"),
+        room: query.get("room"),
         body: req.method === "POST" ? await bodyFrom(req) : undefined,
       });
     } catch (err) {

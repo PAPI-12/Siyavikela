@@ -166,3 +166,41 @@ test("invalid or missing sessions are explicit and inputs are whitelisted", asyn
   assert.equal(result.body.state.bookings[0].requirements.length, 400);
   assert.equal(result.body.state.bookings[0].arbitrary, undefined);
 });
+
+test("the event stream publishes committed room revisions without exposing the booking", async () => {
+  const { createServer } = await import("node:http");
+  const { once } = await import("node:events");
+  const { roomHttpHandler } = await import("../server/rooms.js");
+  const memory = memoryRooms();
+  const service = roomService(memory);
+  const opening = (await create(service)).body;
+  const server = createServer(roomHttpHandler(memory));
+  server.listen(0, "127.0.0.1");
+  await once(server, "listening");
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 4000);
+  try {
+    assert.equal(opening.push, true);
+    const response = await fetch(
+      `http://127.0.0.1:${server.address().port}/api/rooms?room=${opening.room}&watch=1`,
+      { signal: controller.signal },
+    );
+    assert.match(response.headers.get("content-type"), /text\/event-stream/);
+    const reader = response.body
+      .pipeThrough(new TextDecoderStream())
+      .getReader();
+    assert.match((await reader.read()).value, /event: revision\ndata: 0\n\n/);
+    const result = await act(service, opening, "donor", {
+      type: "book",
+      values: newBooking(),
+    });
+    assert.equal(result.status, 200);
+    assert.equal((await reader.read()).value, "event: revision\ndata: 1\n\n");
+    await reader.cancel();
+  } finally {
+    clearTimeout(timeout);
+    controller.abort();
+    server.closeAllConnections();
+    await new Promise((resolve) => server.close(resolve));
+  }
+});
